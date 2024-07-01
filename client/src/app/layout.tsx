@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
+import Cabecalho from "../../components/cabecalho/cabecalho";
+import Rodape from "../../components/rodape/rodape";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +23,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>{children}</body>
+      <body className={inter.className}>
+        
+        <div className="components">
+          <header>
+            <Cabecalho/>
+          </header>
+
+          <main className="children">{children}</main>
+
+          <footer>
+            <Rodape/>
+          </footer>
+
+        </div>
+
+      </body>
     </html>
   );
 }
