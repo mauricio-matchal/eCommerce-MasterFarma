@@ -2,13 +2,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 5rem;
+    height: 4rem;
     background-color: #053947;
     padding: 15px;
 }
 .img{
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     
 }
 .logo{
@@ -20,13 +20,13 @@
 }
 .logo p{
     color: white;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .formPesquisa{
     display: flex;
     align-items: center;
-    height: 1.8rem;
+    height: 1.2rem;
     width: 37.5rem;
     background-color: white;
     border-radius: 30px;
@@ -36,7 +36,7 @@
 
 .formPesquisa ::placeholder{
     color: #053947;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: bold;
 }
 .inputPesquisa {
@@ -58,6 +58,11 @@
     cursor: pointer;
 }
 
+.lupa{
+    width: 20px;
+    height: 20px;
+}
+
 .login, .carrinho{
     display: flex;
     flex-direction: column;
@@ -69,15 +74,25 @@
     background-color: transparent;
     cursor: pointer;
     color: white;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: bold;
     margin-top: 5px;
 }
 
 .login{
-    margin-right: -300px;
+    margin-right: -350px;
 }
 
 .carrinho{
     margin-right: 90px;
+}
+
+.imgLogin{
+    width: 24px;
+    height: 24px;
+} 
+
+.imgCarrinho{
+    width: 24px;
+    height: 24px;
 }

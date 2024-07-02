@@ -1,0 +1,80 @@
+.rodape{
+    height: 13rem;
+    background-color: #053947;
+    color: white;    
+}
+
+.rodape p{
+    color: white;
+}
+.informacoes{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.atendimento, .institucional{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 40px;
+}
+
+.atendimento p{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.informacoes p{
+    font-size: 20px;
+}
+.itens{
+    margin-top: -10px;
+    list-style-type: none;
+}
+
+.itens li{
+    margin-bottom: 1ch;
+}
+
+.itens a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+}
+
+.itens a:hover{
+    color: #00A2B9;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 15px;
+}
+.logo p{
+    color: white;
+    font-size: 60px;
+}
+
+.img{
+    width: 90px;
+    height: 90px; 
+}
+
+.copyright{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -35px;
+    color: white;
+}
+
+.copyright p{
+    font-size: 20px;
+}

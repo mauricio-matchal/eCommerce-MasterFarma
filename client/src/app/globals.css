@@ -6,3 +6,16 @@ body, html {
   height: 100%;
   margin: 0;
 }
+.components {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.children {
+  flex: 1;
+}
+
+footer {
+  height: 13rem;
+}
