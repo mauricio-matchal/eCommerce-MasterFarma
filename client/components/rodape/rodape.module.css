@@ -1,6 +1,5 @@
 .rodape{
-    height: 13rem;
-    background-color: #053947;
+    background-color: #125667;
     color: white;    
 }
 
@@ -77,4 +76,9 @@
 
 .copyright p{
     font-size: 20px;
+}
+
+.barra{
+    height: 2rem;
+    background-color: #053947;
 }

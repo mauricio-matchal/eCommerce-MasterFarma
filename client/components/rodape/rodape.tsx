@@ -5,6 +5,7 @@ import Image from 'next/image';
 export default function Rodape(){
     return(
         <div className={styles.rodape}>
+            <div className={styles.barra}></div>
             <div className={styles.informacoes}>
                 <div className={styles.atendimento}>
                      <p>Atendimento</p>
