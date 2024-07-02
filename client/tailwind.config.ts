@@ -9,10 +9,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
-    },
-    colors: {
-      'anil-600': '#00A2B9',
-      'anil-950': '#053947',
+      colors: {
+        'anil-50': '#EBFFFE',
+        'anil-600': '#00A2B9',
+        'anil-900': '#125667',
+        'anil-950': '#053947',
+      },
     },
   },
   plugins: [],
