@@ -22,7 +22,7 @@ model Produto {
 
 model Carrinho {
   produto   Produto @relation(fields: [product], references: [codigo])
-  quantidade Int
+  quantidade Int    @default(1)
 
   product    Int     @unique
 }
