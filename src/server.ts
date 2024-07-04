@@ -1,0 +1,40 @@
+import { configDotenv } from "dotenv";
+import express from "express";
+import bodyParser from 'body-parser';
+import {
+    criarProduto,
+    editarProduto,
+    deletarProduto,
+    buscarProdutosPeloNome,
+    buscarProdutosPelaCategoria,
+    buscarProdutosPeloPreco
+} from '../src/controllers/ProdutoController';
+import {
+    adicionarProdutoAoCarrinho,
+    deletarProdutoDoCarrinho,
+    editarQuantidadeNoCarrinho,
+    listarProdutosNoCarrinho
+} from '../src/controllers/CarrinhoController';
+
+configDotenv();
+
+const app = express();
+const port = 3000;
+
+app.use(bodyParser.json());
+
+app.post('/produtos', criarProduto);
+app.put('/produtos/:codigo', editarProduto);
+app.delete('/produtos/:codigo', deletarProduto);
+app.get('/produtos/nome/:nome', buscarProdutosPeloNome);
+app.get('/produtos/categoria/:categoria', buscarProdutosPelaCategoria);
+app.get('/produtos/preco/:intervalo', buscarProdutosPeloPreco);
+
+app.post('/carrinho', adicionarProdutoAoCarrinho);
+app.delete('/carrinho/:product', deletarProdutoDoCarrinho);
+app.put('/carrinho/:product', editarQuantidadeNoCarrinho);
+app.get('/carrinho', listarProdutosNoCarrinho);
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
