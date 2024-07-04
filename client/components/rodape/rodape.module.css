@@ -19,7 +19,15 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-right: 40px;
+    margin-top: 20px;
+}
+
+.atendimento{
+    margin-right: 10px;
+}
+
+.institucional{
+    margin-right: 25px;
 }
 
 .atendimento p{
@@ -28,7 +36,7 @@
 }
 
 .informacoes p{
-    font-size: 20px;
+    font-size: 16px;
 }
 .itens{
     margin-top: -10px;
@@ -41,8 +49,7 @@
 
 .itens a{
     text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
     color: white;
 }
 
@@ -58,24 +65,24 @@
 }
 .logo p{
     color: white;
-    font-size: 60px;
+    font-size: 40px;
 }
 
 .img{
-    width: 90px;
-    height: 90px; 
+    width: 70px;
+    height: 70px; 
 }
 
 .copyright{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -35px;
+    margin-top: -25px;
     color: white;
 }
 
 .copyright p{
-    font-size: 20px;
+    font-size: 14px;
 }
 
 .barra{
