@@ -1,0 +1,22 @@
+.rolagem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 3px;
+    margin-top:15px;
+}
+
+.bolinha1, .bolinha2, .bolinha3, .bolinha4, .bolinha5{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+.bolinha2, .bolinha3, .bolinha4, .bolinha5{
+    background-color: #00A2B9;
+}
+
+.bolinha1{
+    background-color: #053947;
+}
