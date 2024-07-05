@@ -5,78 +5,82 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 /**
- * Content for home documents
+ * Content for carrossel documents
  */
-interface HomeDocumentData {
+interface CarrosselDocumentData {
   /**
-   * prop field in *home*
+   * prop field in *carrossel*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: home.prom
+   * - **API ID Path**: carrossel.prop
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  prom: prismic.ImageField<never>;
+  prop: prismic.ImageField<never>;
 
   /**
-   * prop1 field in *home*
+   * prop1 field in *carrossel*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: home.prom1
+   * - **API ID Path**: carrossel.prop1
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  prom1: prismic.ImageField<never>;
+  prop1: prismic.ImageField<never>;
 
   /**
-   * prop2 field in *home*
+   * prop2 field in *carrossel*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: home.prom2
+   * - **API ID Path**: carrossel.prop2
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  prom2: prismic.ImageField<never>;
+  prop2: prismic.ImageField<never>;
 
   /**
-   * prop3 field in *home*
+   * prop3 field in *carrossel*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: home.prom3
+   * - **API ID Path**: carrossel.prop3
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  prom3: prismic.ImageField<never>;
+  prop3: prismic.ImageField<never>;
 
   /**
-   * prop4 field in *home*
+   * prop4 field in *carrossel*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: home.prom4
+   * - **API ID Path**: carrossel.prop4
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  prom4: prismic.ImageField<never>;
+  prop4: prismic.ImageField<never>;
 }
 
 /**
- * home document from Prismic
+ * carrossel document from Prismic
  *
- * - **API ID**: `home`
+ * - **API ID**: `carrossel`
  * - **Repeatable**: `false`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type HomeDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<Simplify<HomeDocumentData>, "home", Lang>;
+export type CarrosselDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<CarrosselDocumentData>,
+    "carrossel",
+    Lang
+  >;
 
-export type AllDocumentTypes = HomeDocument;
+export type AllDocumentTypes = CarrosselDocument;
 
 declare module "@prismicio/client" {
   interface CreateClient {
@@ -87,6 +91,6 @@ declare module "@prismicio/client" {
   }
 
   namespace Content {
-    export type { HomeDocument, HomeDocumentData, AllDocumentTypes };
+    export type { CarrosselDocument, CarrosselDocumentData, AllDocumentTypes };
   }
 }
