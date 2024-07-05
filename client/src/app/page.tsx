@@ -6,8 +6,8 @@ import ProductPage from "@/pages/product-page";
 
 export default function Home() {
   return (
-    <div className="">
-      <ProductPage />
+    <div className="home">
+      <p>HOME</p>
     </div>
   );
 }
