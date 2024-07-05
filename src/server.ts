@@ -8,7 +8,9 @@ import {
     deletarProduto,
     buscarProdutosPeloNome,
     buscarProdutosPelaCategoria,
-    buscarProdutosPeloPreco
+    buscarProdutosPeloPreco,
+    buscarProdutosPeloNomeECategoria,
+    buscarProdutosPeloNomeEPreco
 } from '../src/controllers/ProdutoController';
 import {
     adicionarProdutoAoCarrinho,
@@ -31,6 +33,8 @@ app.delete('/produtos/:codigo', deletarProduto);
 app.get('/produtos/nome/:nome', buscarProdutosPeloNome);
 app.get('/produtos/categoria/:categoria', buscarProdutosPelaCategoria);
 app.get('/produtos/preco/:intervalo', buscarProdutosPeloPreco);
+app.get('/produtos/nome/:nome/categoria/:categoria', buscarProdutosPeloNomeECategoria);
+app.get('/produtos/nome/:nome/preco/:intervalo', buscarProdutosPeloNomeEPreco);
 
 app.post('/carrinho', adicionarProdutoAoCarrinho);
 app.delete('/carrinho/:product', deletarProdutoDoCarrinho);

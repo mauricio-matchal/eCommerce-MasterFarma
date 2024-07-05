@@ -65,6 +65,25 @@ export const buscarProdutosPelaCategoria = async (req: Request, res: Response) =
     }
 };
 
+export const buscarProdutosPeloNomeECategoria = async (req: Request, res: Response) => {
+    const { nome, categoria } = req.params;
+    try {
+        const produtos = await prisma.produto.findMany({
+            where: {
+                nome: { contains: nome },
+                categoria
+            }
+        });
+        if (produtos.length === 0) {
+            res.json({ message: `Não encontramos resultados para nome: ${nome} e categoria: ${categoria}` });
+        } else {
+            res.json({ message: `Exibindo resultados para nome: ${nome} e categoria: ${categoria}`, produtos });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao buscar produtos' });
+    }
+};
+
 export const buscarProdutosPeloPreco = async (req: Request, res: Response) => {
     const { intervalo } = req.params;
     let condition;
@@ -94,3 +113,38 @@ export const buscarProdutosPeloPreco = async (req: Request, res: Response) => {
     }
 };
 
+export const buscarProdutosPeloNomeEPreco = async (req: Request, res: Response) => {
+    const { nome, intervalo } = req.params;
+    let condition;
+    switch (intervalo) {
+        case 'ate-50':
+            condition = { lte: 50 };
+            break;
+        case 'ate-100':
+            condition = { lte: 100 };
+            break;
+        case 'ate-200':
+            condition = { lte: 200 };
+            break;
+        case 'acima-200':
+            condition = { gt: 200 };
+            break;
+        default:
+            return res.status(400).json({ error: 'Intervalo inválido' });
+    }
+    try {
+        const produtos = await prisma.produto.findMany({
+            where: {
+                nome: { contains: nome },
+                preco_atual: condition
+            }
+        });
+        if (produtos.length === 0) {
+            res.json({ message: `Não encontramos resultados para nome: ${nome} e intervalo de preço: ${intervalo}` });
+        } else {
+            res.json({ message: `Exibindo resultados para nome: ${nome} e intervalo de preço: ${intervalo}`, produtos });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao buscar produtos' });
+    }
+};
