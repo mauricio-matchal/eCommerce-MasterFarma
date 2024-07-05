@@ -1,6 +1,8 @@
 import { ProductCardP } from "@/components/product-card-portrait";
 import Image from "next/image";
-import CarmedProduct from "../assets/carmed-product.png";
+import Cabecalho from "@/components/cabecalho/cabecalho";
+import { NavBar } from "@/components/navbar";
+import ProductPage from "@/pages/product-page";
 
 export default function Home() {
   return (
