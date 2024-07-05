@@ -4,6 +4,7 @@ import CarmedProduct from "../assets/carmed-product.png";
 import { createClient } from "../prismicio"
 import style from './page.module.css';
 import Rolagem from "../../components/indicadorNav/rolagem";
+import Secoes from "../../components/secoes/secoes";
 
 export default async function Home() {
 
@@ -37,6 +38,7 @@ export default async function Home() {
       {renderImage(carrossel.data.prop4, 'prop4')}
     </div>
     <Rolagem/>
+    <Secoes/>
     </>
   );
 }
