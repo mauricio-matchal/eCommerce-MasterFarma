@@ -1,6 +1,9 @@
 import { ProductCardP } from "@/components/product-card-portrait";
 import Image from "next/image";
 import CarmedProduct from "../assets/carmed-product.png";
+import { createClient } from "../prismicio"
+import style from './page.module.css';
+import Rolagem from "../../components/indicadorNav/rolagem";
 
 export default async function Home() {
 
