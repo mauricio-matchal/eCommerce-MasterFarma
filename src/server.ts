@@ -10,7 +10,8 @@ import {
     buscarProdutosPelaCategoria,
     buscarProdutosPeloPreco,
     buscarProdutosPeloNomeECategoria,
-    buscarProdutosPeloNomeEPreco
+    buscarProdutosPeloNomeEPreco,
+    buscarTodosOsProdutos 
 } from '../src/controllers/ProdutoController';
 import {
     adicionarProdutoAoCarrinho,
@@ -30,6 +31,7 @@ app.use(bodyParser.json());
 app.post('/produtos', criarProduto);
 app.put('/produtos/:codigo', editarProduto);
 app.delete('/produtos/:codigo', deletarProduto);
+app.get('/produtos', buscarTodosOsProdutos);
 app.get('/produtos/nome/:nome', buscarProdutosPeloNome);
 app.get('/produtos/categoria/:categoria', buscarProdutosPelaCategoria);
 app.get('/produtos/preco/:intervalo', buscarProdutosPeloPreco);
