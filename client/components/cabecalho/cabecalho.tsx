@@ -44,8 +44,10 @@ export default function Cabecalho() {
             </div>
 
             <div className={styles.carrinho}>
-                <Image className={styles.imgCarrinho} src={Carrinho} alt="Carrinho" priority />
-                <button type="submit" className={styles.botaoCarrinho}>R$0,00</button>
+                <button type="submit" className={styles.botaoCarrinho}>
+                    <Image className={styles.imgCarrinho} src={Carrinho} alt="Carrinho" priority />
+                </button>
+                <p>R$0,00</p>
             </div>
         </div>
     );

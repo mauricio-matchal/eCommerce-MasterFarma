@@ -69,10 +69,25 @@
     align-items: center;
 }
 
-.botaoLogin, .botaoCarrinho{
+.botaoLogin{
     border: none;
     background-color: transparent;
     cursor: pointer;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.botaoCarrinho{
+    border:none;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+    background-color: transparent;
+}
+
+.carrinho p{
     color: white;
     font-size: 14px;
     font-weight: bold;
