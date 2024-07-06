@@ -5,6 +5,7 @@ import { createClient } from "../prismicio"
 import style from './page.module.css';
 import Rolagem from "../../components/indicadorNav/rolagem";
 import Secoes from "../../components/secoes/secoes";
+import Ofertas from "../../components/ofertas/ofertas";
 
 export default async function Home() {
 
@@ -39,6 +40,7 @@ export default async function Home() {
     </div>
     <Rolagem/>
     <Secoes/>
+    <Ofertas/>
     </>
   );
 }
