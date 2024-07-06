@@ -6,7 +6,9 @@ import style from './page.module.css';
 import Rolagem from "../../components/indicadorNav/rolagem";
 import Secoes from "../../components/secoes/secoes";
 import Ofertas from "../../components/ofertas/ofertas";
-
+import Marcas from "../../components/marcas/marcas";
+import Kit from "../../components/kit/kit";
+ 
 export default async function Home() {
 
   const prismic = createClient();
@@ -41,6 +43,8 @@ export default async function Home() {
     <Rolagem/>
     <Secoes/>
     <Ofertas/>
+    <Marcas/>
+    <Kit/>
     </>
   );
 }
