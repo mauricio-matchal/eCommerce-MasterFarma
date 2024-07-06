@@ -39,6 +39,15 @@ export const deletarProduto = async (req: Request, res: Response) => {
     }
 };
 
+export const buscarTodosOsProdutos = async (req: Request, res: Response) => {
+    try {
+        const produtos = await prisma.produto.findMany();
+        res.json(produtos);
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao buscar todos os produtos' });
+    }
+};
+
 export const buscarProdutosPeloNome = async (req: Request, res: Response) => {
     const { nome } = req.params;
     try {
