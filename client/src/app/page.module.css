@@ -1,27 +1,26 @@
 .home {
-    display: flex;
-    overflow-x: scroll; 
-    gap: 20px; 
-    margin-left: 350px;
-    margin-right: 350px;
-    margin-top: 100px;
-    -ms-overflow-style: none; 
-    scrollbar-width: none;  
-  }
-  
-  .home::-webkit-scrollbar {
-    display: none; 
-  }
-  
-  .imageProp {
-    width: 100%;
-    max-width: auto;
-    height: auto; 
-    object-fit: cover;
-  }
+  display: flex;
+  overflow-x: auto; 
+  gap: 20px; 
+  margin: 100px 350px 0 350px;
+  -ms-overflow-style: none; 
+  scrollbar-width: none;  
+}
 
-  .carro{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-  }
+.home::-webkit-scrollbar {
+  display: none; 
+}
+
+.carro {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px; 
+}
+
+.imageProp {
+  width: 1200px; 
+  height: 500px; 
+  object-fit: cover; 
+  border-radius: 30px;
+}

@@ -3,14 +3,14 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap:85px;
+    gap:55px;
     margin-top: 50px;
     cursor: pointer;
 }
 
 .medicamentos, .suplementos, .higiene, .beleza, .bebes, .perfumaria{
-    width: 124px;
-    height: 124px;
+    width: 154px;
+    height: 154px;
     border-radius: 50%;
     background-color: #00A2B9;
 }
@@ -27,9 +27,9 @@
     align-items: center;
 }
 .imagem{
-    width: 40px;
-    height: 40px;
-    margin-top: 40px;
+    width: 55px;
+    height: 55px;
+    margin-top: 50px;
 }
 
 .elemento p{

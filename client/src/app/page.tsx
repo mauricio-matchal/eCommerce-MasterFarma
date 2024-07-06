@@ -26,9 +26,9 @@ export default async function Home() {
       <PrismicNextImage
         key={key}
         field = {image}
-        alt={alt || 'Image'}
-        width={500}
-        height={400}
+        alt= ""
+        width={1200}
+        height={500}
         className={style.imageProp}
       />
       
@@ -45,6 +45,7 @@ export default async function Home() {
         {renderImage(carrossel.data.prop3, 'prop3')}
         {renderImage(carrossel.data.prop4, 'prop4')}
       </div>
+      
     </div>
     <Rolagem/>
     <Secoes/>
