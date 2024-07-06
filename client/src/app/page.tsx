@@ -9,6 +9,7 @@ import Ofertas from "../../components/ofertas/ofertas";
 import Marcas from "../../components/marcas/marcas";
 import Kit from "../../components/kit/kit";
 import { PrismicNextImage } from '@prismicio/next';
+import Vendidos from "../../components/maisVendidos/vendidos";
  
 export default async function Home() {
 
@@ -52,6 +53,7 @@ export default async function Home() {
     <Ofertas/>
     <Marcas/>
     <Kit/>
+    <Vendidos/>
     </>
   );
 }
