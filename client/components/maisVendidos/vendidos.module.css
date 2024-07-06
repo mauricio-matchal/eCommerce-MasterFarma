@@ -1,0 +1,63 @@
+.maisVendidos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo{
+    font-weight: bold;
+    font-size:28px;
+    color: #053947;
+}
+
+.produto{
+    display: flex;
+    flex-direction: row;
+    background-color: #00A2B9;
+    width: 580px;
+    height: 265px;
+    padding: 15px;
+    border-radius: 30px;
+    margin-bottom: 40px;
+    gap:15px;
+}
+
+.precoOriginal p{
+    margin-bottom: -15px;
+    color: #EBFFFE;
+    font-weight: bold;
+   
+}
+
+.desconto h1{
+    font-size:45px;
+    font-weight: bold;
+    color: #053947;
+    margin-top: -10px;
+}
+
+.parcela{
+    color: #EBFFFE;
+    margin-top: -10px;
+}
+
+.traco {
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%) rotate(180deg); 
+    width: 50%; 
+    height: 20px;
+    margin-left: 30px;
+    margin-top: 5px;
+}
+
+.tituloP{
+    color:#EBFFFE;
+}
+
+.elemento{
+    display: flex;
+    flex-direction:row;
+    gap: 25px;
+}
