@@ -8,6 +8,7 @@ import Secoes from "../../components/secoes/secoes";
 import Ofertas from "../../components/ofertas/ofertas";
 import Marcas from "../../components/marcas/marcas";
 import Kit from "../../components/kit/kit";
+import { PrismicNextImage } from '@prismicio/next';
  
 export default async function Home() {
 
@@ -20,25 +21,30 @@ export default async function Home() {
     const { url, alt, dimensions } = image;
     if (!dimensions) return null;
     return (
-      <Image
+      
+      
+      <PrismicNextImage
         key={key}
-        src={url}
+        field = {image}
         alt={alt || 'Image'}
-        width={dimensions.width}
-        height={dimensions.height}
+        width={500}
+        height={400}
         className={style.imageProp}
       />
+      
     );
   };
 
   return (
     <>
     <div className={style.home}>
-      {renderImage(carrossel.data.prop, 'prop')}
-      {renderImage(carrossel.data.prop1, 'prop1')}
-      {renderImage(carrossel.data.prop2, 'prop2')}
-      {renderImage(carrossel.data.prop3, 'prop3')}
-      {renderImage(carrossel.data.prop4, 'prop4')}
+      <div className={style.carro}>
+        {renderImage(carrossel.data.prop, 'prop')}
+        {renderImage(carrossel.data.prop1, 'prop1')}
+        {renderImage(carrossel.data.prop2, 'prop2')}
+        {renderImage(carrossel.data.prop3, 'prop3')}
+        {renderImage(carrossel.data.prop4, 'prop4')}
+      </div>
     </div>
     <Rolagem/>
     <Secoes/>

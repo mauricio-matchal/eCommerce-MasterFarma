@@ -15,9 +15,13 @@
   
   .imageProp {
     width: 100%;
-    max-width: 1200px; 
+    max-width: auto;
     height: auto; 
     object-fit: cover;
   }
 
-  
+  .carro{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
