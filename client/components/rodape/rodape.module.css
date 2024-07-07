@@ -1,20 +1,20 @@
-.rodape{
+.rodape {
     background-color: #125667;
-    color: white;    
-}
-
-.rodape p{
     color: white;
 }
-.informacoes{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    
+
+.rodape p {
+    color: white;
 }
 
-.atendimento, .institucional{
+.informacoes {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+}
+
+.atendimento, .institucional {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,70 +22,98 @@
     margin-top: 20px;
 }
 
-.atendimento{
+.atendimento {
     margin-right: 5px;
 }
 
-.institucional{
+.institucional {
     margin-right: 25px;
 }
 
-.atendimento p{
+.atendimento p {
     font-size: 20px;
     font-weight: bold;
 }
 
-.informacoes p{
+.institucional .itens{
+    margin-left: -15px;
+}
+.informacoes p {
     font-size: 16px;
 }
-.itens{
+
+.itens {
     margin-top: -10px;
     list-style-type: none;
 }
 
-.itens li{
+.itens li {
     margin-bottom: 5px;
 }
 
-.itens a{
+.itens a {
     text-decoration: none;
     font-size: 14px;
     color: white;
 }
 
-.itens a:hover{
+.itens a:hover {
     color: #00A2B9;
 }
 
-.logo{
+.logo {
     display: flex;
     align-items: center;
     flex-direction: row;
     gap: 15px;
 }
-.logo p{
+
+.logo p {
     color: white;
     font-size: 40px;
 }
 
-.img{
+.img {
     width: 70px;
-    height: 70px; 
+    height: 70px;
 }
 
-.copyright{
+.copyright {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -25px;
+    margin-top: -20px;
     color: white;
 }
 
-.copyright p{
+.copyright p {
     font-size: 14px;
 }
 
-.barra{
+.barra {
     height: 2rem;
     background-color: #053947;
+}
+
+.elemento {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 468px) {
+    .informacoes {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .atendimento, .institucional {
+        margin-top: -10px;
+    }
+
+    .copyright {
+        margin-top: 5px;
+        
+    }
 }
