@@ -2,6 +2,7 @@ import style from "./ofertas.module.css";
 import Image from "next/image";
 import Hidratante from "../../public/hidratante.svg";
 import Traco from "../../public/traco.svg";
+import Rolagem from "../../components/indicadorNav/rolagemO";
 
 export default function Ofertas() {
     return (
@@ -80,6 +81,11 @@ export default function Ofertas() {
                     </div>
                 </div>
             </div>
+
+            <div className={style.rolagem}>
+                <Rolagem/>
+            </div>
+            
         </div>
     )
 }

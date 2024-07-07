@@ -1,0 +1,29 @@
+.rolagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 3px;
+    margin-top: 15px;
+}
+
+.bolinha1, .bolinha2, .bolinha3, .bolinha4{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease; /* Adiciona a transição */
+}
+
+.bolinha3, .bolinha4{
+    background-color: #00A2B9;
+}
+
+.bolinha1, .bolinha2 {
+    background-color: #053947;
+}
+
+.conjunto{
+    display: flex;
+    flex-direction: row;
+}
+
