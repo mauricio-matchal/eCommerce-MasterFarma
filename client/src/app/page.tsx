@@ -6,9 +6,8 @@ import { ProductManagePage } from "@/pages/product-manage";
 
 export default function Home() {
   return (
-    <ProductManagePage />
-    // <div className="home">
-    //   <p>HOME</p>
-    // </div>
+    <div className="home">
+      <p>HOME</p>
+    </div>
   );
 }
