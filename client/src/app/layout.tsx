@@ -3,7 +3,7 @@ import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Cabecalho from "../../components/cabecalho/cabecalho";
 import Rodape from "../../components/rodape/rodape";
-import { ProductManagePage } from "@/pages/product-manage";
+import { ProductManagePage } from "@/pages/ProductManagePage";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "MasterFarma",
   description: "Farmácia",
   icons: {
-    icon: '/favicon.ico',
+    icon: "/favicon.ico",
   },
 };
 
@@ -38,7 +38,6 @@ export default function RootLayout({
           </footer>
 
         </div> */}
-
       </body>
     </html>
   );

@@ -16,7 +16,7 @@ export function ProductCardP({
   installment,
 }: ProductCardPProps) {
   return (
-    <div className="bg-anil-600 p-4 pb-8 rounded-[30px] max-w-[290px]">
+    <div className="bg-anil-600 p-4 pb-8 rounded-[30px] max-w-[290px] h-[540px]">
       <Image src={image} alt={"Produto Carmed"} className="rounded-[14px]" />
       <h2 className="text-2xl mt-3 font-extrabold">{title}</h2>
       <div className="relative max-w-fit">
