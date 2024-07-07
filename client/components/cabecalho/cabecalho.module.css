@@ -1,29 +1,40 @@
 .cabecalho {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 5rem;
     align-items: center;
-    justify-content: space-between;
-    height: 4rem;
     background-color: #053947;
     padding: 15px;
 }
-.img{
-    width: 40px;
-    height: 40px;
-    
-}
-.logo{
+
+.topo {
     display: flex;
     align-items: center;
-    flex-direction: row;
-    gap: 15px;
-    margin-left: 90px;
+    justify-content: space-between;
+    width: 100%;
 }
-.logo p{
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 100px;
+    margin-top: -30px;
+
+}
+
+.logo p {
     color: white;
     font-size: 30px;
 }
 
-.formPesquisa{
+.barraPesquisa{
+    margin-top: -70px;
+    margin-left: 100px;
+}
+
+.formPesquisa {
     display: flex;
     align-items: center;
     height: 1.2rem;
@@ -34,42 +45,51 @@
     padding: 10px;
 }
 
-.formPesquisa ::placeholder{
+.formPesquisa ::placeholder {
     color: #053947;
     font-size: 14px;
     font-weight: bold;
 }
+
 .inputPesquisa {
     width: 100%;
-    padding: 10px 40px 10px 10px; 
-    border: none; 
-    background-color: transparent; 
+    padding: 10px 40px 10px 10px;
+    border: none;
+    background-color: transparent;
     color: black;
-    
 }
 
 .inputPesquisa:focus {
     outline: none;
 }
 
-.botao{
+.botao {
     border: none;
     background-color: transparent;
     cursor: pointer;
 }
 
-.lupa{
+.lupa {
     width: 20px;
     height: 20px;
 }
 
-.login, .carrinho{
+.components {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    gap: 20px;
+    margin-right: 100px;
+    margin-top: -30px;
 }
 
-.botaoLogin, .botaoCarrinho{
+.login, .carrinho {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.botaoLogin {
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -79,20 +99,101 @@
     margin-top: 5px;
 }
 
-.login{
-    margin-right: -300px;
+.botaoCarrinho {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin-top: 15px;
 }
 
-.carrinho{
-    margin-right: 90px;
+.carrinho p {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: -3px;
 }
 
-.imgLogin{
-    width: 24px;
-    height: 24px;
-} 
+.img {
+    width: 40px;
+    height: 40px;
+}
 
-.imgCarrinho{
+.imgLogin {
     width: 24px;
     height: 24px;
+}
+
+.imgCarrinho {
+    width: 24px;
+    height: 24px;
+}
+
+@media (max-width: 768px) {
+    .cabecalho {
+        height: 8rem;
+    }
+
+    .barraPesquisa{
+        margin-top: 1px;
+        margin-left: -5px;
+    }
+    .topo{
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 468px) {
+    .cabecalho {
+        height: 8rem;
+    }
+    
+    .topo {
+        flex-direction: row;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .logo {
+        margin-left: 0;
+    }
+
+    .components {
+        flex-direction: row;
+        margin-right: 0;
+    }
+
+    .barraPesquisa{
+        margin-top: 2px;
+        margin-left: -10px;
+    }
+
+    .formPesquisa {
+        width: 19rem;
+    }
+
+    .logo p {
+        font-size: 25px;
+    }
+
+    .img {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .imgLogin {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .imgCarrinho {
+        width: 20px;
+        height: 20px;
+    }
+
+    .components {
+        gap: 5px;
+    }
 }

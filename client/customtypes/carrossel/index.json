@@ -1,0 +1,58 @@
+{
+  "format": "custom",
+  "id": "carrossel",
+  "label": "carrossel",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "carrossel",
+          "placeholder": ""
+        }
+      },
+      "prop": {
+        "type": "Image",
+        "config": {
+          "label": "prop",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "prop1": {
+        "type": "Image",
+        "config": {
+          "label": "prop1",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "prop2": {
+        "type": "Image",
+        "config": {
+          "label": "prop2",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "prop3": {
+        "type": "Image",
+        "config": {
+          "label": "prop3",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "prop4": {
+        "type": "Image",
+        "config": {
+          "label": "prop4",
+          "constraint": {},
+          "thumbnails": []
+        }
+      }
+    }
+  }
+}

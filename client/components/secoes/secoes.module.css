@@ -1,0 +1,38 @@
+.componentes{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:55px;
+    margin-top: 50px;
+    cursor: pointer;
+}
+
+.medicamentos, .suplementos, .higiene, .beleza, .bebes, .perfumaria{
+    width: 154px;
+    height: 154px;
+    border-radius: 50%;
+    background-color: #00A2B9;
+}
+
+.elemento{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.icone{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imagem{
+    width: 55px;
+    height: 55px;
+    margin-top: 50px;
+}
+
+.elemento p{
+    font-weight: bold;
+    color:#00A2B9;
+}
