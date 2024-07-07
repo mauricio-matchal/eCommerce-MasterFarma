@@ -18,11 +18,24 @@ export default function Cabecalho() {
 
     return (
         <div className={styles.cabecalho}>
-            <div className={styles.logo}>
-                <Image className={styles.img} src={Logo} alt="Logo" priority />
-                <p><strong>Master</strong>Farma</p>
+            <div className={styles.topo}>
+                <div className={styles.logo}>
+                    <Image className={styles.img} src={Logo} alt="Logo" priority />
+                    <p><strong>Master</strong>Farma</p>
+                </div>
+                <div className={styles.components}>
+                    <div className={styles.login}>
+                        <Image className={styles.imgLogin} src={Login} alt="Login" priority />
+                        <button type="submit" className={styles.botaoLogin}>Entrar</button>
+                    </div>
+                    <div className={styles.carrinho}>
+                        <button type="submit" className={styles.botaoCarrinho}>
+                            <Image className={styles.imgCarrinho} src={Carrinho} alt="Carrinho" priority />
+                        </button>
+                        <p>R$0,00</p>
+                    </div>
+                </div>
             </div>
-
             <div className={styles.barraPesquisa}>
                 <form className={styles.formPesquisa}>
                     <input
@@ -36,18 +49,6 @@ export default function Cabecalho() {
                         <Image className={styles.lupa} src={Lupa} alt="Lupa" priority />
                     </button>
                 </form>
-            </div>
-
-            <div className={styles.login}>
-                <Image className={styles.imgLogin} src={Login} alt="Login" priority />
-                <button type="submit" className={styles.botaoLogin}>Entrar</button>
-            </div>
-
-            <div className={styles.carrinho}>
-                <button type="submit" className={styles.botaoCarrinho}>
-                    <Image className={styles.imgCarrinho} src={Carrinho} alt="Carrinho" priority />
-                </button>
-                <p>R$0,00</p>
             </div>
         </div>
     );
