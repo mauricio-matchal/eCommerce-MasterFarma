@@ -28,8 +28,6 @@ export default async function Home() {
         key={key}
         field = {image}
         alt= ""
-        width={1200}
-        height={500}
         className={style.imageProp}
       />
       
