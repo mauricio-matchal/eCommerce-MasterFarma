@@ -61,3 +61,52 @@
     flex-direction:row;
     gap: 25px;
 }
+
+@media (max-width: 768px) {
+    .titulo h1{
+        font-size: 45px;
+        text-align: center;
+    }
+
+    .elemento{
+        display: flex;
+        flex-direction:column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 468px) {
+    .titulo h1{
+        font-size: 35px;
+        text-align: center;
+    }
+
+    .elemento{
+        display: flex;
+        flex-direction:column;
+        gap: 10px;
+    }
+
+    .tituloP h2{
+        font-size: 15px;
+    }
+
+    .imagem{
+        width: 180px;
+        height: 180px;
+    }
+
+    .desconto h1{
+        font-size: 25px;
+
+    }
+
+    .produto{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 340px;
+        height: 180px;
+    }
+
+}

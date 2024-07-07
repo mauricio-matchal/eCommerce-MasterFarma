@@ -18,7 +18,7 @@ export default function Kit(){
                     <Image className={style.imagem} src={Kits} alt="" />
                 </div>
 
-                <div className={style.kits}>
+                <div className={style.kits3}>
                     <Image className={style.imagem} src={Kits} alt="" />
                 </div>
                 
