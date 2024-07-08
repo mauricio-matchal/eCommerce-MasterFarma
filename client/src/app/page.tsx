@@ -10,7 +10,7 @@ import Marcas from "../../components/marcas/marcas";
 import Kit from "../../components/kit/kit";
 import { PrismicNextImage } from "@prismicio/next";
 import Vendidos from "../../components/maisVendidos/vendidos";
-import { ProductManagePage } from "@/pages/product-manage";
+
 
 export default async function Home() {
   const prismic = createClient();
@@ -27,6 +27,8 @@ export default async function Home() {
         field = {image}
         alt= ""
         className={style.imageProp}
+        width={1200}
+        height={500}
       />
     );
   };
@@ -34,21 +36,21 @@ export default async function Home() {
   return (
     <>
       <div className={style.home}>
-      <div className={style.carro}>
-        {renderImage(carrossel.data.prop, 'prop')}
-        {renderImage(carrossel.data.prop1, 'prop1')}
-        {renderImage(carrossel.data.prop2, 'prop2')}
-        {renderImage(carrossel.data.prop3, 'prop3')}
-        {renderImage(carrossel.data.prop4, 'prop4')}
-      </div>
+        <div className={style.carro}>
+          {renderImage(carrossel.data.prop, 'prop')}
+          {renderImage(carrossel.data.prop1, 'prop1')}
+          {renderImage(carrossel.data.prop2, 'prop2')}
+          {renderImage(carrossel.data.prop3, 'prop3')}
+          {renderImage(carrossel.data.prop4, 'prop4')}
+        </div>
       
     </div>
     <Rolagem/>
     <Secoes/>
-    <Ofertas/>
+    <Ofertas tituloSecao="Ofertas do dia"/>
     <Marcas/>
     <Kit/>
-    <Vendidos/>
+    <Vendidos tituloSecao="Mais vendidos"/>
     </>
   );
 }

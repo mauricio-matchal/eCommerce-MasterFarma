@@ -24,7 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>
+
+      <body className={inter.className}>
+        
         <div className="components">
           <header>
             <Cabecalho/>
@@ -37,6 +39,7 @@ export default function RootLayout({
           </footer>
 
         </div>
+
       </body>
     </html>
   );
