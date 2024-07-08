@@ -157,3 +157,18 @@ export const buscarProdutosPeloNomeEPreco = async (req: Request, res: Response) 
         res.status(500).json({ error: 'Erro ao buscar produtos' });
     }
 };
+
+export const buscarProdutoPeloCodigo = async (req: Request, res: Response) => {
+    const { codigo } = req.params;
+    try {
+        const produto = await prisma.produto.findUnique({
+            where: { codigo: Number(codigo) }
+        });
+        if (!produto) {
+            return res.status(404).json({ message: `Produto com código ${codigo} não encontrado` });
+        }
+        res.json(produto);
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao buscar produto pelo código' });
+    }
+};
