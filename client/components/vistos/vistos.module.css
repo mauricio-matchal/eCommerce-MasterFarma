@@ -1,0 +1,63 @@
+.vistos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.tituloV h1{
+    color: #053947;
+    font-weight: bold;
+}
+
+.titulo h2{
+    color: #EBFFFE;
+}
+
+.precoOriginal p{
+    margin-bottom: -15px;
+    color: #EBFFFE;
+    font-weight: bold;
+   
+}
+
+.desconto h1{
+    font-size:45px;
+    font-weight: bold;
+    color: #053947;
+    margin-top: -10px;
+}
+
+.parcela{
+    color: #EBFFFE;
+    margin-top: -35px;
+}
+
+.traco {
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%) rotate(180deg); 
+    width: 50%; 
+    height: 20px;
+    margin-left: 30px;
+    margin-top: 5px;
+}
+
+.produtos {
+    display: flex;
+    gap: 20px; 
+}
+
+.produto {
+    background-color: #00A2B9;
+    padding: 15px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.rolagem{
+    display: none;
+}
