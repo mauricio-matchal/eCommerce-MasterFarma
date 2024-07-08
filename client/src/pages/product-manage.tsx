@@ -8,16 +8,44 @@ import { ProductCardP } from "@/components/product-card-portrait";
 import { useState } from "react";
 import { InputImageLarge } from "@/components/input-image-large";
 import { InputImage } from "@/components/input-image";
+import axios from "axios";
 
 export function ProductManagePage() {
   const [createIsVisible, setCreateIsVisible] = useState(true);
+  const [formData, setFormData] = useState({
+    nome: "",
+    preco_ant: "",
+    preco_atual: "",
+    codigo: "",
+    categoria: ""
+  });
 
   function toggleCreateVisibility() {
     setCreateIsVisible(!createIsVisible);
   }
 
-  function handleSubmit() {
-    // implementar rota de criação de produto
+  function handleInputChange(event: { target: { id: any; value: any; }; }) {
+    const { id, value } = event.target;
+    setFormData({ ...formData, [id]: value });
+  }
+
+  async function handleSubmit() {
+    try {
+      const response = await axios.post("http://localhost:3000/produtos", formData);
+      console.log(response.data);
+      // Limpar o formulário após o envio bem-sucedido
+      setFormData({
+        nome: "",
+        preco_ant: "",
+        preco_atual: "",
+        codigo: "",
+        categoria: ""
+      });
+      // Ocultar o formulário de criação
+      setCreateIsVisible(false);
+    } catch (error) {
+      console.error("Erro ao criar produto:", error);
+    }
   }
 
   function manageDelete() {
@@ -60,8 +88,10 @@ export function ProductManagePage() {
                 </label>
                 <input
                   type="text"
-                  id="nomeDoProduto"
+                  id="nome"
                   placeholder="Nome do produto"
+                  value={formData.nome}
+                  onChange={handleInputChange}
                   className="bg-anil-50 outline-none rounded-[15px] w-[392px] h-[87px] pl-4 pb-10 text-anil-950 text-base font-bold mb-4"
                 />
 
@@ -78,6 +108,8 @@ export function ProductManagePage() {
                       type="text"
                       id="precoAntigo"
                       placeholder="R$0,00"
+                      value={formData.preco_ant}
+                      onChange={handleInputChange}
                       className="bg-anil-50 outline-none rounded-[15px] w-[182px] h-[45px] pl-4 text-anil-950 text-base font-bold"
                     />
                   </div>
@@ -92,6 +124,8 @@ export function ProductManagePage() {
                       type="text"
                       id="precoAtual"
                       placeholder="R$0,00"
+                      value={formData.preco_atual}
+                      onChange={handleInputChange}
                       className="bg-anil-50 outline-none rounded-[15px] w-[182px] h-[45px] pl-4 text-anil-950 text-base font-bold"
                     />
                   </div>
@@ -106,6 +140,8 @@ export function ProductManagePage() {
                       type="text"
                       id="codigo"
                       placeholder="00000000"
+                      value={formData.codigo}
+                      onChange={handleInputChange}
                       className="bg-anil-50 outline-none rounded-[15px] w-[182px] h-[45px] pl-4 text-anil-950 text-base font-bold"
                     />
                   </div>
@@ -121,15 +157,21 @@ export function ProductManagePage() {
                       type="radio"
                       name="categoria"
                       id="meds"
+                      value="Medicamentos"
+                      checked={formData.categoria === "Medicamentos"}
+                      onChange={handleInputChange}
                       className="-mr-1"
                     />
-                    <label htmlFor="meds" className="font-medium">
+                    <label htmlFor="medicamentos" className="font-medium">
                       Medicamentos
                     </label>
                     <input
                       type="radio"
                       name="categoria"
                       id="suplementos"
+                      value="Suplementos"
+                      checked={formData.categoria === "Suplementos"}
+                      onChange={handleInputChange}
                       className="-mr-1"
                     />
                     <label htmlFor="suplementos" className="font-medium">
@@ -139,6 +181,9 @@ export function ProductManagePage() {
                       type="radio"
                       name="categoria"
                       id="higiene"
+                      value="Higiene"
+                      checked={formData.categoria === "Higiene"}
+                      onChange={handleInputChange}
                       className="-mr-1"
                     />
                     <label htmlFor="higiene" className="font-medium">
@@ -150,6 +195,9 @@ export function ProductManagePage() {
                       type="radio"
                       name="categoria"
                       id="beleza"
+                      value="Beleza"
+                      checked={formData.categoria === "Beleza"}
+                      onChange={handleInputChange}
                       className="-mr-1"
                     />
                     <label htmlFor="beleza" className="font-medium">
@@ -159,6 +207,9 @@ export function ProductManagePage() {
                       type="radio"
                       name="categoria"
                       id="bebes"
+                      value="Bebês"
+                      checked={formData.categoria === "Bebês"}
+                      onChange={handleInputChange}
                       className="-mr-1"
                     />
                     <label htmlFor="bebes" className="font-medium">
@@ -168,6 +219,9 @@ export function ProductManagePage() {
                       type="radio"
                       name="categoria"
                       id="perfumaria"
+                      value="Perfumaria"
+                      checked={formData.categoria === "Perfumaria"}
+                      onChange={handleInputChange}
                       className="-mr-1"
                     />
                     <label htmlFor="perfumaria" className="font-medium">

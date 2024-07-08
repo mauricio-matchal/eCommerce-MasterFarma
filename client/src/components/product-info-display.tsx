@@ -1,5 +1,6 @@
 import CartPlusLarge from "@/assets/icons/cart.plus.large";
 import Image, { StaticImageData } from "next/image";
+import axios from "axios";
 
 interface ProductInfoDisplayProps {
   image: StaticImageData;
@@ -18,6 +19,17 @@ export function ProductInfoDisplay({
   installment,
   code,
 }: ProductInfoDisplayProps) {
+
+  const handleAddToCart = async () => {
+    try {
+      await axios.post('http://localhost:3000/carrinho', { product: code });
+      alert('Produto adicionado ao carrinho com sucesso!');
+    } catch (error) {
+      console.error('Erro ao adicionar ao carrinho:', error);
+      alert('Erro ao adicionar ao carrinho.');
+    }
+  };
+
   return (
     <div className="flex flex-row gap-6">
       <div className="flex flex-col gap-2">
@@ -83,7 +95,10 @@ export function ProductInfoDisplay({
               Ou 3x de {installment}
             </p>
           </div>
-          <button className="bg-anil-600 w-[288px] py-[30px] rounded-[15px]">
+          <button 
+            className="bg-anil-600 w-[288px] py-[30px] rounded-[15px]"
+            onClick={handleAddToCart}
+          >
             <div className="flex gap-3 items-center mx-auto w-fit">
               <CartPlusLarge />
               <span className="text-anil-50 text-2xl font-bold text-start w-[170px]">
