@@ -1,0 +1,24 @@
+.carrinho{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+.titulo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:15px;
+}
+
+.titulo h1{
+    color: #053947;
+    font-weight: bold;
+}
+
+.img{
+    width: 50px;
+    height: 50px;
+}
