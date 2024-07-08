@@ -3,7 +3,7 @@ import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Cabecalho from "../../components/cabecalho/cabecalho";
 import Rodape from "../../components/rodape/rodape";
-import { ProductManagePage } from "@/pages/ProductManagePage";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>
-        {children}
-        {/* <div className="components">
+
+      <body className={inter.className}>
+        
+        <div className="components">
           <header>
             <Cabecalho/>
           </header>
@@ -37,7 +38,8 @@ export default function RootLayout({
             <Rodape/>
           </footer>
 
-        </div> */}
+        </div>
+
       </body>
     </html>
   );
