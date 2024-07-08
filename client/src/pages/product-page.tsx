@@ -5,19 +5,49 @@ import LogoCopy from "@/assets/logo.large";
 import { ProductCardL } from "@/components/product-card-landscape";
 import { ProductInfoDisplay } from "@/components/product-info-display";
 import { Footer } from "@/components/footer";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+// Definindo a interface para o produto com os campos do banco de dados
+interface Product {
+  nome: string;
+  preco_ant: number;
+  preco_atual: number;
+  codigo: number;
+  categoria: string;
+}
 
 export default function ProductPage() {
+  const [product, setProduct] = useState<Product | null>(null);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/produtos/codigo/40028922'); // substitua pelo código do produto desejado
+        setProduct(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar produto:", error);
+      }
+    };
+
+    fetchProduct();
+  }, []);
+
+  if (!product) {
+    return <div>Carregando...</div>;
+  }
+
   return (
     <div className="w-screen flex flex-col items-center bg-anil-50">
       <NavBar />
       <div className="h-[72px]"></div>
       <ProductInfoDisplay
         image={CarmedProduct}
-        title={"Hidratante Labial Carmed Barbie 65 Pink 10g"}
-        oldPrice={49.99}
-        price={29.99}
-        installment={9.99}
-        code={40028922}
+        title={product.nome} 
+        oldPrice={product.preco_ant} 
+        price={product.preco_atual} 
+        installment={9.99} // pode ajustar isso conforme necessário
+        code={product.codigo} 
       />
       <h1 className="text-6xl font-extrabold text-anil-950 mt-[72px]">
         Itens semelhantes
