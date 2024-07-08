@@ -3,6 +3,7 @@ import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Cabecalho from "../../components/cabecalho/cabecalho";
 import Rodape from "../../components/rodape/rodape";
+import { ProductManagePage } from "@/pages/ProductManagePage";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   title: "MasterFarma",
   description: "Farmácia",
   icons: {
-    icon: '/favicon.ico',
+    icon: "/favicon.ico",
   },
 };
 
@@ -24,8 +25,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        
-        <div className="components">
+        {children}
+        {/* <div className="components">
           <header>
             <Cabecalho/>
           </header>
@@ -36,8 +37,7 @@ export default function RootLayout({
             <Rodape/>
           </footer>
 
-        </div>
-
+        </div> */}
       </body>
     </html>
   );

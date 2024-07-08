@@ -1,42 +1,39 @@
 import { ProductCardP } from "@/components/product-card-portrait";
 import Image from "next/image";
 import CarmedProduct from "../assets/carmed-product.png";
-import { createClient } from "../prismicio"
-import style from './page.module.css';
+import { createClient } from "../prismicio";
+import style from "./page.module.css";
 import Rolagem from "../../components/indicadorNav/rolagem";
 import Secoes from "../../components/secoes/secoes";
 import Ofertas from "../../components/ofertas/ofertas";
 import Marcas from "../../components/marcas/marcas";
 import Kit from "../../components/kit/kit";
-import { PrismicNextImage } from '@prismicio/next';
+import { PrismicNextImage } from "@prismicio/next";
 import Vendidos from "../../components/maisVendidos/vendidos";
- 
-export default async function Home() {
+import { ProductManagePage } from "@/pages/product-manage";
 
+export default async function Home() {
   const prismic = createClient();
 
-  const carrossel = await prismic.getByUID('carrossel', 'carrosselme');
+  const carrossel = await prismic.getByUID("carrossel", "carrosselme");
 
   const renderImage = (image: any, key: string) => {
     if (!image) return null;
     const { url, alt, dimensions } = image;
     if (!dimensions) return null;
     return (
-      
-      
       <PrismicNextImage
         key={key}
         field = {image}
         alt= ""
         className={style.imageProp}
       />
-      
     );
   };
 
   return (
     <>
-    <div className={style.home}>
+      <div className={style.home}>
       <div className={style.carro}>
         {renderImage(carrossel.data.prop, 'prop')}
         {renderImage(carrossel.data.prop1, 'prop1')}
