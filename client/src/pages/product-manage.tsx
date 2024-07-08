@@ -20,6 +20,14 @@ export function ProductManagePage() {
     // implementar rota de criação de produto
   }
 
+  function manageDelete() {
+    console.log("Deletado");
+  }
+
+  function manageEdit() {
+    console.log("Editado");
+  }
+
   return (
     <div className="w-screen flex flex-col items-center bg-anil-50">
       <NavBar />
@@ -103,8 +111,73 @@ export function ProductManagePage() {
                   </div>
                 </div>
 
-                {/* Botões */}
+                {/* Categorias */}
+
                 <div>
+                  <h3 className="text-2xl font-extrabold mb-2">Categorias</h3>
+                  <label htmlFor=""></label>
+                  <div className="flex flex-row gap-2">
+                    <input
+                      type="radio"
+                      name="categoria"
+                      id="meds"
+                      className="-mr-1"
+                    />
+                    <label htmlFor="meds" className="font-medium">
+                      Medicamentos
+                    </label>
+                    <input
+                      type="radio"
+                      name="categoria"
+                      id="suplementos"
+                      className="-mr-1"
+                    />
+                    <label htmlFor="suplementos" className="font-medium">
+                      Suplementos
+                    </label>
+                    <input
+                      type="radio"
+                      name="categoria"
+                      id="higiene"
+                      className="-mr-1"
+                    />
+                    <label htmlFor="higiene" className="font-medium">
+                      Higiene
+                    </label>
+                  </div>
+                  <div className="flex flex-row gap-2">
+                    <input
+                      type="radio"
+                      name="categoria"
+                      id="beleza"
+                      className="-mr-1"
+                    />
+                    <label htmlFor="beleza" className="font-medium">
+                      Beleza
+                    </label>
+                    <input
+                      type="radio"
+                      name="categoria"
+                      id="bebes"
+                      className="-mr-1"
+                    />
+                    <label htmlFor="bebes" className="font-medium">
+                      Bebês
+                    </label>
+                    <input
+                      type="radio"
+                      name="categoria"
+                      id="perfumaria"
+                      className="-mr-1"
+                    />
+                    <label htmlFor="perfumaria" className="font-medium">
+                      Perfumaria
+                    </label>
+                  </div>
+                </div>
+
+                {/* Botões */}
+                <div className="mt-4">
                   <button
                     onClick={toggleCreateVisibility}
                     className="rounded-[15px] w-[192px] h-[69px] border-[1px] border-anil-600 mr-2 text-2xl font-extrabold"
@@ -131,7 +204,7 @@ export function ProductManagePage() {
           Adicionar produto
         </button>
       )}
-      
+
       {/* Grid de Produtos e Filtro */}
       <main className="grid grid-cols-4 gap-6 mt-6">
         <Filter />
@@ -141,6 +214,9 @@ export function ProductManagePage() {
           oldPrice={49.99}
           price={29.99}
           installment={9.99}
+          editable={true}
+          manageDelete={manageDelete}
+          manageEdit={manageEdit}
         />
         <ProductCardP
           image={CarmedProduct}
@@ -148,6 +224,9 @@ export function ProductManagePage() {
           oldPrice={49.99}
           price={29.99}
           installment={9.99}
+          editable={true}
+          manageDelete={manageDelete}
+          manageEdit={manageEdit}
         />
         <ProductCardP
           image={CarmedProduct}
@@ -155,6 +234,9 @@ export function ProductManagePage() {
           oldPrice={49.99}
           price={29.99}
           installment={9.99}
+          editable={true}
+          manageDelete={manageDelete}
+          manageEdit={manageEdit}
         />
         <ProductCardP
           image={CarmedProduct}
@@ -162,6 +244,9 @@ export function ProductManagePage() {
           oldPrice={49.99}
           price={29.99}
           installment={9.99}
+          editable={true}
+          manageDelete={manageDelete}
+          manageEdit={manageEdit}
         />
         <ProductCardP
           image={CarmedProduct}
@@ -169,6 +254,9 @@ export function ProductManagePage() {
           oldPrice={49.99}
           price={29.99}
           installment={9.99}
+          editable={true}
+          manageDelete={manageDelete}
+          manageEdit={manageEdit}
         />
       </main>
       <Footer />

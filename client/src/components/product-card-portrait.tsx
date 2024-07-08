@@ -1,4 +1,6 @@
+import Trash from "@/assets/icons/trash";
 import Image, { StaticImageData } from "next/image";
+import { useEffect, useState } from "react";
 
 interface ProductCardPProps {
   image: StaticImageData;
@@ -6,6 +8,9 @@ interface ProductCardPProps {
   oldPrice?: number;
   price: number;
   installment: number;
+  editable?: boolean;
+  manageDelete?: () => void;
+  manageEdit?: () => void;
 }
 
 export function ProductCardP({
@@ -14,9 +19,18 @@ export function ProductCardP({
   oldPrice,
   price,
   installment,
+  editable = false,
+  manageDelete,
+  manageEdit,
 }: ProductCardPProps) {
+  const [canEdit, setCanEdit] = useState(editable);
+
+  useEffect(() => {
+    setCanEdit(editable);
+  }, [editable]);
+
   return (
-    <div className="bg-anil-600 p-4 pb-8 rounded-[30px] max-w-[290px] h-[540px]">
+    <div className="bg-anil-600 p-4 pb-8 rounded-[30px] max-w-[290px]">
       <Image src={image} alt={"Produto Carmed"} className="rounded-[14px]" />
       <h2 className="text-2xl mt-3 font-extrabold">{title}</h2>
       <div className="relative max-w-fit">
@@ -25,6 +39,18 @@ export function ProductCardP({
       </div>
       <h1 className="text-5xl text-anil-950 font-extrabold">R${price}</h1>
       <p className="text-xl font-medium">Ou 3x de {installment}</p>
+      {canEdit ? (
+        <div className="flex flex-row w-full gap-2 mt-4 -mb-[15px]">
+          <button onClick={manageEdit} className="bg-anil-950 rounded-[15px] w-[195px] text-2xl font-extrabold">
+            Editar
+          </button>
+          <button onClick={manageDelete} className="flex items-center justify-center w-[58px] h-[54px] bg-anil-50 rounded-[15px]">
+            <Trash />
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
