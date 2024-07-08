@@ -24,10 +24,8 @@ export default async function Home() {
     return (
       <PrismicNextImage
         key={key}
-        field={image}
-        alt=""
-        width={1200}
-        height={500}
+        field = {image}
+        alt= ""
         className={style.imageProp}
       />
     );

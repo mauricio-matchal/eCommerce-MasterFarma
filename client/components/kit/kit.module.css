@@ -4,6 +4,11 @@
     align-items: center;
     flex-direction: column;
 }
+
+.kits3{
+    display: flex;
+}
+
 .titulo{
     font-weight: bold;
     font-size:28px;
@@ -16,3 +21,43 @@
     gap:25px;
 }
 
+@media (max-width: 768px) {
+    .titulo h1{
+        font-size: 45px;
+        text-align: center;
+    }
+
+    .kits3{
+        display: none;
+    }
+    
+    .imagem{
+        width: 300px;
+        height: 400px;
+    }
+    
+    .elemento{
+        margin-top: -15px;
+    }
+}
+
+@media (max-width: 468px) {
+    .titulo h1{
+        font-size: 35px;
+        text-align: center;
+    }
+    
+    .kits3{
+        display: none;
+    }
+    
+    .imagem{
+        width: 150px;
+        height: 250px;
+    }
+
+    .elemento{
+        margin-top: -18px;
+    }
+
+}

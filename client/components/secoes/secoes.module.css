@@ -1,38 +1,109 @@
-.componentes{
+.secao {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.componentes {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap:55px;
+    gap: 55px;
     margin-top: 50px;
     cursor: pointer;
 }
 
-.medicamentos, .suplementos, .higiene, .beleza, .bebes, .perfumaria{
+.medicamentos, .suplementos, .higiene, .beleza, .bebes, .perfumaria {
     width: 154px;
     height: 154px;
     border-radius: 50%;
     background-color: #00A2B9;
 }
 
-.elemento{
+.elemento {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.icone{
+
+.icone {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.imagem{
+
+.imagem {
     width: 55px;
     height: 55px;
     margin-top: 50px;
 }
 
-.elemento p{
+.elemento p {
     font-weight: bold;
-    color:#00A2B9;
+    color: #00A2B9;
+}
+
+.rolagem {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .secao {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    .componentes {
+        overflow-x: auto; 
+        -ms-overflow-style: none; 
+        scrollbar-width: none; 
+        gap: 100px; 
+        margin-left: 30px;
+        margin-right: 0;
+        justify-content: flex-start;
+        width: 100%; 
+    }
+
+    .componentes::-webkit-scrollbar {
+        display: none; 
+    }
+    
+    .rolagem{
+        display: flex;
+    }
+}
+
+@media (max-width: 468px) {
+    .secao {
+        margin-left: 10px;
+        margin-right: 20px;
+    }
+    .componentes {
+        overflow-x: auto; 
+        gap: 30px; 
+        width: 100%; 
+        margin-left: 5px;
+    }
+
+    .componentes::-webkit-scrollbar {
+        display: none; 
+    }
+
+    .medicamentos, .suplementos, .higiene, .beleza, .bebes, .perfumaria {
+        width: 100px;
+        height: 100px;
+    }
+
+    .imagem {
+        width: 35px;
+        height: 35px;
+        margin-top: 30px;
+    }
+
+    .rolagem{
+        display: flex;
+    }
 }
