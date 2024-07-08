@@ -47,10 +47,10 @@ export default async function Home() {
     </div>
     <Rolagem/>
     <Secoes/>
-    <Ofertas/>
+    <Ofertas tituloSecao="Ofertas do dia"/>
     <Marcas/>
     <Kit/>
-    <Vendidos/>
+    <Vendidos tituloSecao="Mais vendidos"/>
     </>
   );
 }

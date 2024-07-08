@@ -4,12 +4,16 @@ import Hidratante from "../../public/hidratante.svg";
 import Traco from "../../public/traco.svg";
 import Rolagem from "../../components/indicadorNav/rolagemO";
 
-export default function Ofertas() {
+interface OfertasProps {
+    tituloSecao: string;
+}
+
+export default function Ofertas({ tituloSecao }: OfertasProps) {
     return (
         <div className={style.ofertas}>
 
             <div className={style.titOferta}>
-                <h1>Ofertas do dia</h1>
+                <h1>{tituloSecao}</h1>
             </div>
 
             <div className={style.produtos}>

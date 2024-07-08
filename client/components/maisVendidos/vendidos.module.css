@@ -9,6 +9,9 @@
     font-weight: bold;
     font-size:28px;
     color: #053947;
+    white-space: normal; 
+    word-wrap: break-word; 
+    max-width: 80%; 
 }
 
 .produto{
