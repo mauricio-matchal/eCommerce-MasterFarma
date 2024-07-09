@@ -1,11 +1,14 @@
-/*@tailwind base;
-@tailwind components;
-@tailwind utilities;*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
+:root {
+  --50: #ebfffe;
+  --600: #00a2b9;
+  --950: #053947;
+}
 
-body, html {
-  background-color: #EBFFFE;
-  color: #fff;
+body,
+html {
+  background-color: #ebfffe;
   height: 100%;
   margin: 0;
 }

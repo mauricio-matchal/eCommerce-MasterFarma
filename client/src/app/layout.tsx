@@ -29,13 +29,13 @@ export default function RootLayout({
         
         <div className="components">
           <header>
-            <Cabecalho/>
+            <Cabecalho />
           </header>
 
           <main className="children">{children}</main>
 
           <footer>
-            <Rodape/>
+            <Rodape />
           </footer>
 
         </div>

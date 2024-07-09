@@ -1,0 +1,101 @@
+.container {
+  padding: 1rem;
+  padding-bottom: 1rem;
+  max-width: 258px;
+  background-color: var(--600);
+  border-radius: 30px;
+  color: #fff;
+}
+
+.image {
+  border-radius: 14px;
+}
+
+h2.title {
+  margin: 0px;
+  padding: 0px;
+  margin-top: 0.75rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 800;
+}
+
+div.oldprice {
+  position: relative;
+  max-width: fit-content;
+  margin-top: 1rem;
+  max-height: fit-content;
+}
+
+.slash {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 9999px;
+  width: 110px;
+  height: 4px;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  background-color: var(--950);
+}
+
+h3.oldprice {
+  margin: 0px;
+  padding: 0px;
+  max-width: fit-content;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+h1.price {
+  margin: 0px;
+  padding: 0px;
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 800;
+  color: var(--950);
+}
+
+.installment {
+  margin: 0px;
+  padding: 0px;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+}
+
+div.button {
+  display: flex;
+  margin-top: 1rem;
+  flex-direction: row;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+button.edit {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 800;
+  width: 228px;
+  height: 54px;
+  border: none;
+  background-color: var(--950);
+  border-radius: 15px;
+  color: #fff;
+}
+
+button.delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 58px;
+  height: 54px;
+  border-radius: 15px;
+  background-color: var(--50);
+  border: none;
+}
+
+.delete:hover,
+.edit:hover {
+  cursor: pointer;
+}

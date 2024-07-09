@@ -1,5 +1,5 @@
-import { NavBar } from "@/components/navbar";
-import { ProductCardP } from "@/components/product-card-portrait";
+import { NavBar } from "@/components/navbar/navbar";
+import { ProductCardP } from "@/components/product card portrait/product-card-portrait";
 import CarmedProduct from "../assets/carmed-product.png";
 import LogoCopy from "@/assets/logo.large";
 import { ProductCardL } from "@/components/product-card-landscape";

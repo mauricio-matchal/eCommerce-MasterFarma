@@ -1,4 +1,4 @@
-import { ProductCardP } from "@/components/product-card-portrait";
+import { ProductCardP } from "@/components/product card portrait/product-card-portrait";
 import Image from "next/image";
 import CarmedProduct from "../assets/carmed-product.png";
 import { createClient } from "../prismicio";
@@ -24,8 +24,8 @@ export default async function Home() {
     return (
       <PrismicNextImage
         key={key}
-        field = {image}
-        alt= ""
+        field={image}
+        alt=""
         className={style.imageProp}
         width={1200}
         height={500}
