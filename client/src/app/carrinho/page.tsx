@@ -3,6 +3,7 @@ import Image from "next/image";
 import CarrinhoV from "../../../public/carrinhoVazio.svg";
 import Vistos from "../../../components/ofertas/ofertas";
 import Outros from "../../../components/maisVendidos/vendidos"
+import CarrinhoCheio from "../../../components/carrinhoCheio/carrinhoCheio";
 
 export default function Carrinho(){
     return(
@@ -18,6 +19,7 @@ export default function Carrinho(){
             <Vistos tituloSecao="Vistos recentemente"/>
 
             <Outros tituloSecao="Você também pode gostar"/>
+
         </>
         
     )
