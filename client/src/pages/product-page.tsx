@@ -6,7 +6,7 @@ import { ProductCardL } from "@/components/product-card-landscape";
 import { ProductInfoDisplay } from "@/components/product-info-display";
 import { Footer } from "@/components/footer";
 
-export default function ProductPage() {
+export default function ProductPage() { //modificar essa pagina para que o produto seja o que está no banco de dados
   return (
     <div className="w-screen flex flex-col items-center bg-anil-50">
       <NavBar />
