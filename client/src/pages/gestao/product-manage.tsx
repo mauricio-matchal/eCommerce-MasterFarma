@@ -1,16 +1,14 @@
 "use client";
-import "@/app/page.module.css";
-import { Filter } from "@/components/filter";
-import { Footer } from "@/components/footer";
-import { NavBar } from "@/components/navbar";
+import { Filter } from "@/components/filter/filter";
 import CarmedProduct from "@/assets/carmed-product.png";
-import { ProductCardP } from "@/components/product-card-portrait";
+import { ProductCardP } from "@/components/product card portrait/product-card-portrait";
 import { useState } from "react";
-import { InputImageLarge } from "@/components/input-image-large";
-import { InputImage } from "@/components/input-image";
+import { InputImageLarge } from "@/components/input image large/input-image-large";
+import { InputImage } from "@/components/input image/input-image";
+import style from "@/pages/gestao/manage.module.css";
 
 export function ProductManagePage() {
-  const [createIsVisible, setCreateIsVisible] = useState(true);
+  const [createIsVisible, setCreateIsVisible] = useState(false);
 
   function toggleCreateVisibility() {
     setCreateIsVisible(!createIsVisible);
@@ -29,19 +27,16 @@ export function ProductManagePage() {
   }
 
   return (
-    <div className="w-screen flex flex-col items-center bg-anil-50">
-      <NavBar />
-      <h1 className="mt-[72px] text-[60px] font-extrabold text-anil-950">
-        Gestão dos produtos
-      </h1>
+    <div className={style.container}>
+      <h1 className={style.title}>Gestão dos produtos</h1>
       {createIsVisible ? (
-        <div className="w-[1224px] h-[733px] bg-anil-950 rounded-[30px] flex flex-col justify-center items-center mt-6">
-          <div className="">
-            <h2 className="font-extrabold text-4xl">Criar Produto</h2>
+        <div className={style.modalcontainer}>
+          <div className={style.center}>
+            <h2 className={style.title}>Criar Produto</h2>
 
             {/* Inputs pequeno e grande */}
-            <div className="flex flex-row gap-6 mt-3">
-              <section className="flex flex-col gap-2">
+            <div className={style.layout}>
+              <section className={style.inputssmall}>
                 <InputImage />
                 <InputImage />
                 <InputImage />
@@ -50,63 +45,51 @@ export function ProductManagePage() {
               <InputImageLarge />
 
               {/* Formulário para adição de Produto */}
-              <section className="flex flex-col">
+              <section className={style.formcontainer}>
                 {/* Nome */}
-                <label
-                  className="text-2xl font-extrabold mb-2"
-                  htmlFor="nomeDoProduto"
-                >
+                <label className={style.label} htmlFor="nomeDoProduto">
                   Nome do Produto
                 </label>
-                <input
-                  type="text"
+                <textarea
+                  name="nomeDoProduto"
                   id="nomeDoProduto"
+                  className={style.textarea}
                   placeholder="Nome do produto"
-                  className="bg-anil-50 outline-none rounded-[15px] w-[392px] h-[87px] pl-4 pb-10 text-anil-950 text-base font-bold mb-4"
-                />
+                ></textarea>
 
                 {/* Preços e Código */}
-                <div className="grid grid-cols-2 gap-6 gap-y-4 mb-4">
-                  <div className="flex flex-col">
-                    <label
-                      className="text-2xl font-extrabold mb-2"
-                      htmlFor="precoAntigo"
-                    >
+                <div className={style.textinput}>
+                  <div>
+                    <label className={style.label} htmlFor="precoAntigo">
                       Preço antigo
                     </label>
                     <input
                       type="text"
                       id="precoAntigo"
                       placeholder="R$0,00"
-                      className="bg-anil-50 outline-none rounded-[15px] w-[182px] h-[45px] pl-4 text-anil-950 text-base font-bold"
+                      className={style.textinput}
                     />
                   </div>
-                  <div className="flex flex-col">
-                    <label
-                      className="text-2xl font-extrabold mb-2"
-                      htmlFor="precoAtual"
-                    >
+                  <div>
+                    <label className={style.label} htmlFor="precoAtual">
                       Preço atual
                     </label>
                     <input
                       type="text"
                       id="precoAtual"
                       placeholder="R$0,00"
-                      className="bg-anil-50 outline-none rounded-[15px] w-[182px] h-[45px] pl-4 text-anil-950 text-base font-bold"
+                      className={style.textinput}
                     />
                   </div>
-                  <div className="flex flex-col">
-                    <label
-                      className="text-2xl font-extrabold mb-2"
-                      htmlFor="codigo"
-                    >
+                  <div>
+                    <label className={style.label} htmlFor="codigo">
                       Código
                     </label>
                     <input
                       type="text"
                       id="codigo"
                       placeholder="00000000"
-                      className="bg-anil-50 outline-none rounded-[15px] w-[182px] h-[45px] pl-4 text-anil-950 text-base font-bold"
+                      className={style.textinput}
                     />
                   </div>
                 </div>
@@ -114,23 +97,23 @@ export function ProductManagePage() {
                 {/* Categorias */}
 
                 <div>
-                  <h3 className="text-2xl font-extrabold mb-2">Categorias</h3>
+                  <h3 className={style.label}>Categoria</h3>
                   <label htmlFor=""></label>
-                  <div className="flex flex-row gap-2">
+                  <div className={style.category}>
                     <input
                       type="radio"
                       name="categoria"
                       id="meds"
-                      className="-mr-1"
+                      className={style.adjustmargin}
                     />
-                    <label htmlFor="meds" className="font-medium">
+                    <label htmlFor="meds" className={style.modalcategory}>
                       Medicamentos
                     </label>
                     <input
                       type="radio"
                       name="categoria"
                       id="suplementos"
-                      className="-mr-1"
+                      className={style.adjustmargin}
                     />
                     <label htmlFor="suplementos" className="font-medium">
                       Suplementos
@@ -139,18 +122,18 @@ export function ProductManagePage() {
                       type="radio"
                       name="categoria"
                       id="higiene"
-                      className="-mr-1"
+                      className={style.adjustmargin}
                     />
                     <label htmlFor="higiene" className="font-medium">
                       Higiene
                     </label>
                   </div>
-                  <div className="flex flex-row gap-2">
+                  <div className={style.category}>
                     <input
                       type="radio"
                       name="categoria"
                       id="beleza"
-                      className="-mr-1"
+                      className={style.adjustmargin}
                     />
                     <label htmlFor="beleza" className="font-medium">
                       Beleza
@@ -159,7 +142,7 @@ export function ProductManagePage() {
                       type="radio"
                       name="categoria"
                       id="bebes"
-                      className="-mr-1"
+                      className={style.adjustmargin}
                     />
                     <label htmlFor="bebes" className="font-medium">
                       Bebês
@@ -168,7 +151,7 @@ export function ProductManagePage() {
                       type="radio"
                       name="categoria"
                       id="perfumaria"
-                      className="-mr-1"
+                      className={style.adjustmargin}
                     />
                     <label htmlFor="perfumaria" className="font-medium">
                       Perfumaria
@@ -177,17 +160,14 @@ export function ProductManagePage() {
                 </div>
 
                 {/* Botões */}
-                <div className="mt-4">
+                <div className={style.marginTopRem}>
                   <button
                     onClick={toggleCreateVisibility}
-                    className="rounded-[15px] w-[192px] h-[69px] border-[1px] border-anil-600 mr-2 text-2xl font-extrabold"
+                    className={style.cancel}
                   >
                     Cancelar
                   </button>
-                  <button
-                    onClick={handleSubmit}
-                    className="rounded-[15px] w-[192px] h-[69px] bg-anil-600 text-2xl font-extrabold"
-                  >
+                  <button onClick={handleSubmit} className={style.submit}>
                     Confirmar
                   </button>
                 </div>
@@ -199,14 +179,14 @@ export function ProductManagePage() {
         // Botão que aciona o modal
         <button
           onClick={toggleCreateVisibility}
-          className="bg-anil-950 py-4 max-w-[845px] w-full mt-6 mx-4 rounded-[30px] text-white text-[60px] font-extrabold h-[105px] justify-center leading-[73px]"
+          className={style.createproduct}
         >
           Adicionar produto
         </button>
       )}
 
       {/* Grid de Produtos e Filtro */}
-      <main className="grid grid-cols-4 gap-6 mt-6">
+      <main className={style.grid}>
         <Filter />
         <ProductCardP
           image={CarmedProduct}
@@ -259,7 +239,6 @@ export function ProductManagePage() {
           manageEdit={manageEdit}
         />
       </main>
-      <Footer />
     </div>
   );
 }

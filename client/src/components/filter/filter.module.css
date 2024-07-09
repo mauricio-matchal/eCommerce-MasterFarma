@@ -1,0 +1,26 @@
+.background {
+  display: flex;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+  flex-direction: column;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+  color: #ffffff;
+  width: 258px;
+  background-color: var(--950);
+  border-radius: 30px;
+  max-height: max-content;
+}
+
+h3.title {
+  margin: 8px 0 8px 0;
+  padding: 0px;
+  font-weight: 800;
+}
+
+input.checkbox {
+  margin-right: 8px;
+}

@@ -1,0 +1,26 @@
+.container {
+  position: relative;
+  border-color: 1px;
+  background-color: var(--50);
+  border-radius: 30px;
+  border: 1px solid var(--950) 0.2;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.input {
+  opacity: 0;
+  width: 500px;
+  height: 500px;
+}
+
+.input:hover {
+  cursor: pointer;
+}

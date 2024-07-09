@@ -1,0 +1,196 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+}
+
+.title {
+  margin: 0px;
+  padding: 0px;
+  font-weight: 800;
+  margin-top: 72px;
+  color: var(--950);
+  font-size: 60px;
+}
+
+.createproduct {
+  margin: 1.5rem 1rem 0 1rem;
+  padding: 1rem 0 1rem 0;
+  justify-content: center;
+  width: 100%;
+  font-weight: 800;
+  color: #ffffff;
+  max-width: 845px;
+  font-size: 60px;
+  height: 105px;
+  background-color: var(--950);
+  font-family: "Montserrat", sans-serif;
+  border: none;
+  border-radius: 30px;
+}
+
+.createproduct:hover {
+  cursor: pointer;
+}
+
+.grid {
+  display: grid;
+  margin-top: 1.5rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 72px;
+}
+
+h3.title {
+  font-size: 1.5rem;
+}
+
+/* MODAL */
+
+.modalcontainer {
+  display: flex;
+  margin-top: 1.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 1224px;
+  height: 733px;
+  background-color: var(--950);
+  border-radius: 30px;
+  color: #ffffff;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+}
+
+h2.title {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0px;
+  padding: 0px;
+}
+
+.layout {
+  display: flex;
+  margin-top: 0.75rem;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.inputssmall {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formcontainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 800;
+  margin: 0px;
+  padding: 0px;
+  margin-bottom: 0.5rem;
+}
+
+.textarea {
+  margin-bottom: 1rem;
+  outline-style: none;
+  padding: 13px 16px 0 16px;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+  width: 360px;
+  height: 74px;
+  border: none;
+  background-color: var(--50);
+  border-radius: 15px;
+  font-family: "Montserrat", sans-serif;
+  resize: none;
+  color: var(--950);
+}
+
+div.textinput {
+  display: grid;
+  margin-bottom: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  row-gap: 1rem;
+}
+
+input.textinput {
+  background-color: var(--50);
+  border-radius: 15px;
+  color: var(--950);
+  padding-left: 1rem;
+  outline-style: none;
+  font-size: 1rem;
+  font-weight: 700;
+  width: 166px;
+  height: 45px;
+  font-family: "Montserrat", sans-serif;
+  border: none;
+  margin-top: 0.5rem;
+}
+
+div.category {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-bottom: 8px;
+}
+
+.adjustmargin {
+  margin-right: -0.25rem;
+}
+
+label.modalcategory {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+div.marginTopRem {
+  margin-top: 1rem;
+}
+
+button.cancel {
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 800;
+  width: 192px;
+  height: 69px;
+  border-color: 1px;
+  border-radius: 15px;
+  border: 1px solid var(--600);
+  background-color: transparent;
+  color: var(--50);
+}
+
+button.submit {
+  border-radius: 15px;
+  background: var(--600);
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 800;
+  width: 192px;
+  height: 69px;
+  color: var(--50);
+  border: none;
+}
+
+button.cancel:hover,
+button.submit:hover {
+  cursor: pointer;
+}

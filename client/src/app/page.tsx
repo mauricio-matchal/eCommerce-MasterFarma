@@ -1,4 +1,4 @@
-import { ProductCardP } from "@/components/product-card-portrait";
+import { ProductCardP } from "@/components/product card portrait/product-card-portrait";
 import Image from "next/image";
 import CarmedProduct from "../assets/carmed-product.png";
 import { createClient } from "../prismicio";
@@ -10,7 +10,7 @@ import Marcas from "../../components/marcas/marcas";
 import Kit from "../../components/kit/kit";
 import { PrismicNextImage } from "@prismicio/next";
 import Vendidos from "../../components/maisVendidos/vendidos";
-import { ProductManagePage } from "@/pages/product-manage";
+import { ProductManagePage } from "@/pages/gestao/product-manage";
 
 export default async function Home() {
   const prismic = createClient();
@@ -24,8 +24,8 @@ export default async function Home() {
     return (
       <PrismicNextImage
         key={key}
-        field = {image}
-        alt= ""
+        field={image}
+        alt=""
         className={style.imageProp}
       />
     );
@@ -34,21 +34,21 @@ export default async function Home() {
   return (
     <>
       <div className={style.home}>
-      <div className={style.carro}>
-        {renderImage(carrossel.data.prop, 'prop')}
-        {renderImage(carrossel.data.prop1, 'prop1')}
-        {renderImage(carrossel.data.prop2, 'prop2')}
-        {renderImage(carrossel.data.prop3, 'prop3')}
-        {renderImage(carrossel.data.prop4, 'prop4')}
-      </div>
-      
+        <div className={style.carro}>
+          {renderImage(carrossel.data.prop, "prop")}
+          {renderImage(carrossel.data.prop1, "prop1")}
+          {renderImage(carrossel.data.prop2, "prop2")}
+          {renderImage(carrossel.data.prop3, "prop3")}
+          {renderImage(carrossel.data.prop4, "prop4")}
+        </div>
+        
     </div>
-    <Rolagem/>
-    <Secoes/>
-    <Ofertas/>
-    <Marcas/>
-    <Kit/>
-    <Vendidos/>
+    <Rolagem />
+    <Secoes />
+    <Ofertas />
+    <Marcas />
+    <Kit />
+    <Vendidos />
     </>
   );
 }
