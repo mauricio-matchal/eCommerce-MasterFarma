@@ -1,20 +1,32 @@
 'use client'
 
 import Image from 'next/image';
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import Logo from "../../public/Logo.svg";
 import Lupa from "../../public/lupa.svg";
 import Login from "../../public/login.svg";
 import Carrinho from "../../public/carrinho.svg";
 import Link from 'next/link';
 import styles from "./cabecalho.module.css";
+import axios from 'axios';
 
 export default function Cabecalho() {
     const [pesquisa, setPesquisa] = useState('');
+    const [resultados, setResultados] = useState([]);
 
     const barraPesquisa = (event: ChangeEvent<HTMLInputElement>) => {
         const valorPesquisa = event.target.value;
         setPesquisa(valorPesquisa);
+    };
+
+    const buscarProdutos = async (event: FormEvent<HTMLFormElement>) => { //função de busca de produtos por nome
+        event.preventDefault();
+        try {
+            const response = await axios.get(`http://localhost:3000/produtos/nome/${pesquisa}`);
+            setResultados(response.data.produtos || []);
+        } catch (error) {
+            console.error('Erro ao buscar produtos:', error);
+        }
     };
 
     return (
@@ -43,8 +55,9 @@ export default function Cabecalho() {
                     </Link>
                 </div>
             </div>
-            <div className={styles.barraPesquisa}>
-                <form className={styles.formPesquisa}>
+            {/*fazer com que a função de busca redirecione para a página de resultados e gerar o resultado dessa busca na página de resultados */}
+            <div className={styles.barraPesquisa}> 
+                <form className={styles.formPesquisa} onSubmit={buscarProdutos}>
                     <input
                         type="text"
                         value={pesquisa}
