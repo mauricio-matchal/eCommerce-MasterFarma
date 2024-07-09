@@ -6,16 +6,47 @@ import { useState } from "react";
 import { InputImageLarge } from "@/components/input image large/input-image-large";
 import { InputImage } from "@/components/input image/input-image";
 import style from "@/pages/gestao/manage.module.css";
+import axios from "axios";
 
 export function ProductManagePage() {
   const [createIsVisible, setCreateIsVisible] = useState(false);
+  const [formData, setFormData] = useState({
+    nome: "",
+    preco_ant: "",
+    preco_atual: "",
+    codigo: "",
+    categoria: "",
+  });
+
+  function handleInputChange(event: { target: { id: any; value: any } }) {
+    const { id, value } = event.target;
+    setFormData({ ...formData, [id]: value });
+  }
+
+  async function handleSubmit() {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/produtos",
+        formData
+      );
+      console.log(response.data);
+      // Limpar o formulário após o envio bem-sucedido
+      setFormData({
+        nome: "",
+        preco_ant: "",
+        preco_atual: "",
+        codigo: "",
+        categoria: "",
+      });
+      // Ocultar o formulário de criação
+      setCreateIsVisible(false);
+    } catch (error) {
+      console.error("Erro ao criar produto:", error);
+    }
+  }
 
   function toggleCreateVisibility() {
     setCreateIsVisible(!createIsVisible);
-  }
-
-  function handleSubmit() {
-    // implementar rota de criação de produto
   }
 
   function manageDelete() {
@@ -47,12 +78,14 @@ export function ProductManagePage() {
               {/* Formulário para adição de Produto */}
               <section className={style.formcontainer}>
                 {/* Nome */}
-                <label className={style.label} htmlFor="nomeDoProduto">
+                <label className={style.label} htmlFor="nome">
                   Nome do Produto
                 </label>
                 <textarea
-                  name="nomeDoProduto"
-                  id="nomeDoProduto"
+                  name="nome"
+                  id="nome"
+                  value={formData.nome}
+                  onChange={handleInputChange}
                   className={style.textarea}
                   placeholder="Nome do produto"
                 ></textarea>
@@ -67,6 +100,8 @@ export function ProductManagePage() {
                       type="text"
                       id="precoAntigo"
                       placeholder="R$0,00"
+                      value={formData.preco_ant}
+                      onChange={handleInputChange}
                       className={style.textinput}
                     />
                   </div>
@@ -78,6 +113,8 @@ export function ProductManagePage() {
                       type="text"
                       id="precoAtual"
                       placeholder="R$0,00"
+                      value={formData.preco_atual}
+                      onChange={handleInputChange}
                       className={style.textinput}
                     />
                   </div>
@@ -89,6 +126,8 @@ export function ProductManagePage() {
                       type="text"
                       id="codigo"
                       placeholder="00000000"
+                      value={formData.codigo}
+                      onChange={handleInputChange}
                       className={style.textinput}
                     />
                   </div>
@@ -104,15 +143,25 @@ export function ProductManagePage() {
                       type="radio"
                       name="categoria"
                       id="meds"
+                      value="Medicamentos"
+                      checked={formData.categoria === "Medicamentos"}
+                      onChange={handleInputChange}
                       className={style.adjustmargin}
                     />
-                    <label htmlFor="meds" className={style.modalcategory}>
+                    <label
+                      htmlFor="medicamentos"
+                      className={style.modalcategory}
+                    >
                       Medicamentos
                     </label>
                     <input
                       type="radio"
                       name="categoria"
                       id="suplementos"
+                      value="Suplementos"
+                      checked={formData.categoria === "Suplementos"}
+                      onChange={handleInputChange}
+
                       className={style.adjustmargin}
                     />
                     <label htmlFor="suplementos" className="font-medium">
@@ -122,6 +171,10 @@ export function ProductManagePage() {
                       type="radio"
                       name="categoria"
                       id="higiene"
+                      value="Higiene"
+                      checked={formData.categoria === "Higiene"}
+                      onChange={handleInputChange}
+
                       className={style.adjustmargin}
                     />
                     <label htmlFor="higiene" className="font-medium">
@@ -133,6 +186,10 @@ export function ProductManagePage() {
                       type="radio"
                       name="categoria"
                       id="beleza"
+                      value="Beleza"
+                      checked={formData.categoria === "Beleza"}
+                      onChange={handleInputChange}
+
                       className={style.adjustmargin}
                     />
                     <label htmlFor="beleza" className="font-medium">
@@ -142,6 +199,10 @@ export function ProductManagePage() {
                       type="radio"
                       name="categoria"
                       id="bebes"
+                      value="Bebês"
+                      checked={formData.categoria === "Bebês"}
+                      onChange={handleInputChange}
+
                       className={style.adjustmargin}
                     />
                     <label htmlFor="bebes" className="font-medium">
@@ -151,6 +212,10 @@ export function ProductManagePage() {
                       type="radio"
                       name="categoria"
                       id="perfumaria"
+                      value="Perfumaria"
+                      checked={formData.categoria === "Perfumaria"}
+                      onChange={handleInputChange}
+        
                       className={style.adjustmargin}
                     />
                     <label htmlFor="perfumaria" className="font-medium">

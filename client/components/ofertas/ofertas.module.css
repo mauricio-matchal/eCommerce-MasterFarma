@@ -102,8 +102,13 @@
     .ofertas{
         margin-left: 10px;
     }
+
     .titOferta h1{
         font-size: 35px;
+        white-space: normal; 
+        word-wrap: break-word; 
+        max-width: 90%; 
+        text-align: center;
     }
 
     .produtos {

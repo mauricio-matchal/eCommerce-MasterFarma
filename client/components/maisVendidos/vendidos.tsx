@@ -3,11 +3,15 @@ import Image from "next/image";
 import Produto from "../.././public/hidratante.svg"
 import Traco from "../../public/traco.svg";
 
-export default function Vendidos(){
+interface VendidosProps {
+    tituloSecao: string;
+} 
+
+export default function Vendidos( {tituloSecao} :VendidosProps){
     return(
         <div className={style.maisVendidos}>
             <div className={style.titulo}>
-                <h1>Mais vendidos</h1>
+                <h1>{tituloSecao}</h1>
             </div>
 
             <div className={style.elemento}>

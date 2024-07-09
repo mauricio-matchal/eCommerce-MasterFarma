@@ -4,6 +4,7 @@ import "./globals.css";
 import Cabecalho from "../../components/cabecalho/cabecalho";
 import Rodape from "../../components/rodape/rodape";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 const montserrat = Montserrat({ subsets: ["latin"] });
@@ -23,7 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>
+
+      <body className={inter.className}>
+        
         <div className="components">
           <header>
             <Cabecalho />
@@ -34,7 +37,9 @@ export default function RootLayout({
           <footer>
             <Rodape />
           </footer>
+
         </div>
+
       </body>
     </html>
   );
