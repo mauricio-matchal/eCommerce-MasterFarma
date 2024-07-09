@@ -38,7 +38,7 @@ export function ProductManagePage() {
     setFormData({ ...formData, [id]: value });
   }
 
-  async function handleSubmit() {
+  async function handleSubmit() { //função de criar produto
     try {
       const response = await axios.post(
         "http://localhost:3000/produtos",
