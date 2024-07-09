@@ -2,7 +2,7 @@
 import { Filter } from "@/components/filter/filter";
 import CarmedProduct from "@/assets/carmed-product.png";
 import { ProductCardP } from "@/components/product card portrait/product-card-portrait";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InputImageLarge } from "@/components/input image large/input-image-large";
 import { InputImage } from "@/components/input image/input-image";
 import style from "@/pages/gestao/manage.module.css";
@@ -18,12 +18,27 @@ export function ProductManagePage() {
     categoria: "",
   });
 
+  const [produtos, setProdutos] = useState([]);
+
+  useEffect(() => {
+    fetchProdutos();
+  }, []);
+
+  async function fetchProdutos() { //função de buscar todos os produtos
+    try {
+      const response = await axios.get("http://localhost:3000/produtos");
+      setProdutos(response.data);
+    } catch (error) {
+      console.error("Erro ao buscar produtos:", error);
+    }
+  }
+    
   function handleInputChange(event: { target: { id: any; value: any } }) {
     const { id, value } = event.target;
     setFormData({ ...formData, [id]: value });
   }
 
-  async function handleSubmit() {
+  async function handleSubmit() { //função de criar produto
     try {
       const response = await axios.post(
         "http://localhost:3000/produtos",
@@ -49,12 +64,22 @@ export function ProductManagePage() {
     setCreateIsVisible(!createIsVisible);
   }
 
-  function manageDelete() {
-    console.log("Deletado");
+  async function manageDelete(codigo) { //vai precisar modificar essa propriedade no card portrait
+    try {
+      await axios.delete(`http://localhost:3000/produtos/${codigo}`);
+      fetchProdutos();
+    } catch (error) {
+      console.error("Erro ao deletar produto:", error);
+    }
   }
 
-  function manageEdit() {
-    console.log("Editado");
+  async function manageEdit(codigo, updatedData) { //vai precisar modificar essa propriedade no card protrait
+    try {
+      await axios.put(`http://localhost:3000/produtos/${codigo}`, updatedData);
+      fetchProdutos();
+    } catch (error) {
+      console.error("Erro ao editar produto:", error);
+    }
   }
 
   return (
@@ -250,7 +275,7 @@ export function ProductManagePage() {
         </button>
       )}
 
-      {/* Grid de Produtos e Filtro */}
+      {/* Grid de Produtos e Filtro */ } {/* modificar o grid para retornar os produtos conforme o banco de dados */}
       <main className={style.grid}>
         <Filter />
         <ProductCardP

@@ -20,7 +20,7 @@ export function ProductInfoDisplay({
   code,
 }: ProductInfoDisplayProps) {
 
-  const handleAddToCart = async () => {
+  const handleAddToCart = async () => { //função de adicionar ao carrinho
     try {
       await axios.post('http://localhost:3000/carrinho', { product: code });
       alert('Produto adicionado ao carrinho com sucesso!');
