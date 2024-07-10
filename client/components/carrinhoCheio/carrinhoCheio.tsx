@@ -4,18 +4,21 @@ import Image from "next/image";
 import { useState, ChangeEvent, useEffect } from "react";
 import axios from "axios";
 import styles from "./carrinhoCheio.module.css";
-import Produto from "../.././public/hidratante.svg";
+import Produto from "../../public/hidratante.svg";
 import Traco from "../../public/traco.svg";
 import Lixeira from "../../public/lixeira.svg";
 import CarroCheio from "../../public/carrinhoCheio.svg";
 
 export interface ItemCarrinho {
-  nome: string;
-  preco_ant: number;
-  preco_atual: number;
-  codigo: number;
-  categoria: string;
   quantidade: number;
+  product: number;
+  produto:{
+    nome: string,
+    preco_ant: number,
+    preco_atual: number,
+    codigo: number,
+    categoria:string;
+  }
 }
 
 export default function CarrinhoCheio() {
@@ -33,61 +36,36 @@ export default function CarrinhoCheio() {
     setCupom(valorCupom);
   };
 
-  const fetchItemCarrinho = async () => {
+  async function fetchItemCarrinho() {
     try {
       const response = await axios.get("http://localhost:3000/carrinho");
-      console.log("Resposta da API:", response.data);
-      setItens(response.data);
+      console.log("API Response:", response.data);
+      
+      // Check if the response is an array
+      if (Array.isArray(response.data)) {
+        setItens(response.data);
+      } else {
+        console.error("API response is not an array:", response.data);
+        setItens([]);
+      }
     } catch (error) {
-      console.error("Erro ao listar produto no carrinho:", error);
+      console.error("Erro ao buscar produtos no carrinho:", error);
+      setItens([]);
     }
-  };
+  }
 
-  const deletarItem = async (codigo: number) => {
+  async function deletarItem(codigo: number) {
     try {
-      await axios.delete(`http://localhost:3000/carrinho/${codigo}`); 
+      await axios.delete(`http://localhost:3000/carrinho/${codigo}`);
       fetchItemCarrinho();
     } catch (error) {
       console.error("Erro ao deletar produto:", error);
     }
-  };
-
-  const aumentarQuantidade = (codigo: number) => {
-    const itensAtualizados = itens.map((item) => {
-      if (item.codigo === codigo) {
-        return { ...item, quantidade: item.quantidade + 1 };
-      }
-      return item;
-    });
-    setItens(itensAtualizados);
-  };
-
-  const diminuirQuantidade = (codigo: number) => {
-    const itensAtualizados = itens
-      .map((item) => {
-        if (item.codigo === codigo) {
-          const novaQuantidade = item.quantidade - 1;
-          if (novaQuantidade <= 0) {
-            return null;
-          } else {
-            return { ...item, quantidade: novaQuantidade };
-          }
-        }
-        return item;
-      })
-      .filter(Boolean); // Filtra para remover itens nulos (quantidade <= 0)
-    setItens(itensAtualizados as ItemCarrinho[]);
-  };
+  }
 
   useEffect(() => {
     fetchItemCarrinho();
-    const interval = setInterval(fetchItemCarrinho, 1000); // Busca a cada 1 segundo
-    return () => clearInterval(interval);
   }, []);
-
-  useEffect(() => {
-    console.log("Estado de itens atualizado:", itens); // Verifique o estado
-  }, [itens]);
 
   return (
     <div className={styles.carrinhoCheio}>
@@ -95,29 +73,29 @@ export default function CarrinhoCheio() {
         <Image className={styles.img} src={CarroCheio} alt="carrinhoCheio" priority />
         <h1>Seu carrinho de compras</h1>
       </div>
-      
+
       <div className={styles.elemento}>
         <div className={styles.produtoContainer}>
           {itens.map((item) => (
-            <div key={item.codigo} className={styles.produto}>
+            <div key={item.product} className={styles.produto}>
               <Image className={styles.imagem} src={Produto} alt="hidratante" />
 
               <div className={styles.informacoes}>
                 <div className={styles.tituloP}>
-                  <h2>{item.nome}</h2>
+                  <h2>{item.produto.nome}</h2>
                 </div>
 
                 <div className={styles.precoOriginal}>
-                  <p>{item.preco_ant}</p>
+                  <p>R${item.produto.preco_ant}</p>
                   <Image className={styles.traco} src={Traco} alt="traço" />
                 </div>
 
                 <div className={styles.desconto}>
-                  <h1>{item.preco_atual}</h1>
+                  <h1>R${item.produto.preco_atual}</h1>
                 </div>
 
                 <div className={styles.parcela}>
-                  <p>ou 3x de {(item.preco_atual / 3).toFixed(2)}</p>
+                  <p>ou 3x de R${(item.produto.preco_atual / 3).toFixed(2)}</p>
                 </div>
               </div>
 
@@ -125,7 +103,6 @@ export default function CarrinhoCheio() {
                 <div className={styles.quantidade}>
                   <button
                     type="button"
-                    onClick={() => diminuirQuantidade(item.codigo)}
                     className={styles.botaoDiminuir}
                   >-</button>
                   <div className={styles.quantProd}>
@@ -133,7 +110,6 @@ export default function CarrinhoCheio() {
                   </div>
                   <button
                     type="button"
-                    onClick={() => aumentarQuantidade(item.codigo)}
                     className={styles.botaoAumentar}
                   >+</button>
                 </div>
@@ -141,7 +117,7 @@ export default function CarrinhoCheio() {
                 <div className={styles.valorTotal}>
                   <h2>Subtotal</h2>
                   <div className={styles.caixinha}>
-                    <p>R${(item.preco_atual * item.quantidade).toFixed(2)}</p>
+                    <p>R${(item.produto.preco_atual * item.quantidade).toFixed(2)}</p>
                   </div>
                 </div>
               </div>
@@ -149,7 +125,7 @@ export default function CarrinhoCheio() {
               <div className={styles.lixeira}>
                 <button
                   type="button"
-                  onClick={() => deletarItem(item.codigo)}
+                  onClick={() => deletarItem(item.product)}
                   className={styles.botaoDelete}
                 >
                   <Image className={styles.lixo} src={Lixeira} alt="lixo" />
