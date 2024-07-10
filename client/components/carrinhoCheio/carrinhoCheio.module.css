@@ -204,7 +204,8 @@
     border: 1px solid #EBFFFE;
     border-radius: 15px;
     text-align: center;
-    color: #EBFFFE
+    color: #EBFFFE;
+    cursor: pointer;
 }
 
 .divisao{
@@ -272,6 +273,7 @@
     border: 2px solid #EBFFFE;
     font-size: 14px;
     font-weight:bold;
+    cursor: pointer;
 }
 
 .botaoFinalizar{
@@ -279,5 +281,13 @@
     color: #053947;
     text-align: center;
     font-size: 16px;
-    font-weight: bold
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.botaoDelete{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
 }
