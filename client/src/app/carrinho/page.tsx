@@ -1,59 +1,52 @@
 "use client"
 
-import styles from "./carrinho.module.css";
-import Image from "next/image";
-import CarrinhoV from "../../../public/carrinhoVazio.svg";
 import Vistos from "../../../components/ofertas/ofertas";
-import Outros from "../../../components/maisVendidos/vendidos"
+import Outros from "../../../components/maisVendidos/vendidos";
 import CarrinhoCheio from "../../../components/carrinhoCheio/carrinhoCheio";
+import CarrinhoVazio from "../../../components/carrinhoVazio/carrinhoVazio";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { ItemCarrinho } from "../../../components/carrinhoCheio/carrinhoCheio";
 
-export default function Carrinho(){
-    const [itensCar,setItensCar] = useState([]);
+export default function Carrinho() {
+  const [itensCar, setItensCar] = useState<ItemCarrinho[]>([]);
 
-    useEffect(() =>{
+  async function fetchItensCar() {
+    try {
+      const response = await axios.get("http://localhost:3000/carrinho");
+      console.log("API Response:", response.data);
+      
+      // Check if the response is an array
+      if (Array.isArray(response.data)) {
+        setItensCar(response.data);
+      } else {
+        console.error("API response is not an array:", response.data);
+        setItensCar([]);
+      }
+    } catch (error) {
+      console.error("Erro ao buscar produtos no carrinho:", error);
+      setItensCar([]);
+    }
+  }
 
-        const fetchItensCar = async () => {
-            try{
-                const retorno = await fetch('http://localhost:3000/carrinho');
-                if (retorno.ok){
-                    const data = await retorno.json();
-                    setItensCar(data);
-                }
-                else{
-                    console.error('Erro ao buscar itens do carrinho');
-                }
-            } catch(error){
-                console.error('Erro de rede:', error);
-            } 
-            
-        };
+  useEffect(() => {
+    fetchItensCar();
+    const interval = setInterval(fetchItensCar, 1000); // Busca a cada 1 segundos
 
-        fetchItensCar();
-    }, []);
+        // Limpa o intervalo quando o componente é desmontado
+        return () => clearInterval(interval);
+  }, []);
 
-    return(
-        <>
-            {itensCar.length === 0 ? (
-                <div className={styles.carrinho}>
-                   <div className={styles.titulo}>
-                        <Image className={styles.img} src={CarrinhoV} alt="carrinhoVazio" priority />
-                        <h1>Seu carrinho está vazio</h1>
-                    </div>
-            
-                </div>
+  return (
+    <>
+      {itensCar.length !== 0 ? (
+        <CarrinhoCheio item={itensCar} />
+      ) : (
+        <CarrinhoVazio/>
+      )}
 
-            ) : (
-                <CarrinhoCheio/>
-            )}
-
-
-            <Vistos tituloSecao="Vistos recentemente"/>
-
-            <Outros tituloSecao="Você também pode gostar"/>
-
-        </>
-        
-    )
+      <Vistos tituloSecao="Vistos recentemente" />
+      <Outros tituloSecao="Você também pode gostar" />
+    </>
+  );
 }

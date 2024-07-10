@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { useState, ChangeEvent, useEffect } from "react";
 import axios from "axios";
@@ -12,16 +10,20 @@ import CarroCheio from "../../public/carrinhoCheio.svg";
 export interface ItemCarrinho {
   quantidade: number;
   product: number;
-  produto:{
-    nome: string,
-    preco_ant: number,
-    preco_atual: number,
-    codigo: number,
-    categoria:string;
-  }
+  produto: {
+    nome: string;
+    preco_ant: number;
+    preco_atual: number;
+    codigo: number;
+    categoria: string;
+  };
 }
 
-export default function CarrinhoCheio() {
+interface CarrinhoCheioProps {
+  item: ItemCarrinho[];
+}
+
+export default function CarrinhoCheio({ item }: CarrinhoCheioProps) {
   const [cep, setCep] = useState("");
   const [cupom, setCupom] = useState("");
   const [itens, setItens] = useState<ItemCarrinho[]>([]);
@@ -135,72 +137,75 @@ export default function CarrinhoCheio() {
           ))}
         </div>
 
-        <div className={styles.calculo}>
-          <div className={styles.cepCupom}>
-            <div className={styles.formCep}>
-              <p>Calcule o valor do frete</p>
-
-              <div className={styles.campoDados}>
-                <form className={styles.formInformar}>
-                  <input
-                    type="text"
-                    value={cep}
-                    onChange={informarCep}
-                    placeholder="Digite seu CEP"
-                    className={styles.input}
-                  />
-                </form>
-                <button type="submit" className={styles.botaoOK}>Ok</button>
-              </div>
-
-              <div className={styles.formCupom}>
-                <p>Cupom do desconto</p>
+        {/* Renderização condicional da div 'calculo' */}
+        {itens.length > 0 && (
+          <div className={styles.calculo}>
+            <div className={styles.cepCupom}>
+              <div className={styles.formCep}>
+                <p>Calcule o valor do frete</p>
 
                 <div className={styles.campoDados}>
                   <form className={styles.formInformar}>
                     <input
                       type="text"
-                      value={cupom}
-                      onChange={informarCupom}
-                      placeholder="Digite seu Cupom"
+                      value={cep}
+                      onChange={informarCep}
+                      placeholder="Digite seu CEP"
                       className={styles.input}
                     />
                   </form>
                   <button type="submit" className={styles.botaoOK}>Ok</button>
                 </div>
-              </div>
-            </div>
 
-            <div className={styles.divisao}></div>
+                <div className={styles.formCupom}>
+                  <p>Cupom do desconto</p>
 
-            <div className={styles.resumo}>
-              <p>Resumo do pedido</p>
-              <div className={styles.subT}>
-                <p className={styles.text}>Subtotal</p>
-                <p className={styles.boldText}>R$0,00</p>
-              </div>
-
-              <div className={styles.valorCe}>
-                <p className={styles.text}>Entrega</p>
-                <p className={styles.boldText}>R$0,00</p>
-              </div>
-            </div>
-
-            <div className={styles.divisao}></div>
-
-            <div className={styles.totalPedido}>
-              <div className={styles.totalAPagar}>
-                <p className={styles.text}>Total</p>
-                <p className={styles.boldText}>R$0,00</p>
+                  <div className={styles.campoDados}>
+                    <form className={styles.formInformar}>
+                      <input
+                        type="text"
+                        value={cupom}
+                        onChange={informarCupom}
+                        placeholder="Digite seu Cupom"
+                        className={styles.input}
+                      />
+                    </form>
+                    <button type="submit" className={styles.botaoOK}>Ok</button>
+                  </div>
+                </div>
               </div>
 
-              <div className={styles.botoesCompra}>
-                <button type="submit" className={styles.botaoContinuar}>Continuar comprando</button>
-                <button type="submit" className={styles.botaoFinalizar}>Finalizar compra</button>
+              <div className={styles.divisao}></div>
+
+              <div className={styles.resumo}>
+                <p>Resumo do pedido</p>
+                <div className={styles.subT}>
+                  <p className={styles.text}>Subtotal</p>
+                  <p className={styles.boldText}>R$0,00</p>
+                </div>
+
+                <div className={styles.valorCe}>
+                  <p className={styles.text}>Entrega</p>
+                  <p className={styles.boldText}>R$0,00</p>
+                </div>
+              </div>
+
+              <div className={styles.divisao}></div>
+
+              <div className={styles.totalPedido}>
+                <div className={styles.totalAPagar}>
+                  <p className={styles.text}>Total</p>
+                  <p className={styles.boldText}>R$0,00</p>
+                </div>
+
+                <div className={styles.botoesCompra}>
+                  <button type="submit" className={styles.botaoContinuar}>Continuar comprando</button>
+                  <button type="submit" className={styles.botaoFinalizar}>Finalizar compra</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
