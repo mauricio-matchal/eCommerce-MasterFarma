@@ -1,16 +1,17 @@
+"use client";
+import style from "@/pages/produto/product-page.module.css";
 import { NavBar } from "@/components/navbar/navbar";
 import { ProductCardP } from "@/components/product card portrait/product-card-portrait";
-import CarmedProduct from "../assets/carmed-product.png";
+import CarmedProduct from "@/assets/carmed-product.png";
 import LogoCopy from "@/assets/logo.large";
-import { ProductCardL } from "@/components/product-card-landscape";
-import { ProductInfoDisplay } from "@/components/product-info-display";
+import { ProductCardL } from "@/components/product card landscape/product-card-landscape";
+import { ProductInfoDisplay } from "@/components/product info display/product-info-display";
 import { Footer } from "@/components/footer";
 
-export default function ProductPage() { //modificar essa pagina para que o produto seja o que está no banco de dados
+export default function ProductPage() {
+  //modificar essa pagina para que o produto seja o que está no banco de dados
   return (
-    <div className="w-screen flex flex-col items-center bg-anil-50">
-      <NavBar />
-      <div className="h-[72px]"></div>
+    <div className={style.container}>
       <ProductInfoDisplay
         image={CarmedProduct}
         title={"Hidratante Labial Carmed Barbie 65 Pink 10g"}
@@ -19,10 +20,8 @@ export default function ProductPage() { //modificar essa pagina para que o produ
         installment={9.99}
         code={40028922}
       />
-      <h1 className="text-6xl font-extrabold text-anil-950 mt-[72px]">
-        Itens semelhantes
-      </h1>
-      <section className="flex flex-row gap-6 mt-6">
+      <h1>Itens semelhantes</h1>
+      <section>
         <ProductCardP
           image={CarmedProduct}
           title={"Hidratante Labial Carmed Barbie 65 Pink 10g"}
@@ -52,10 +51,8 @@ export default function ProductPage() { //modificar essa pagina para que o produ
           installment={9.99}
         />
       </section>
-      <h1 className="text-6xl font-extrabold text-anil-950 mt-[72px]">
-        Outros Produtos
-      </h1>
-      <section className="flex flex-row gap-6 mt-6">
+      <h1>Outros Produtos</h1>
+      <section>
         <ProductCardL
           image={CarmedProduct}
           title={"Hidratante Labial Carmed Barbie 65 Pink 10g"}
@@ -71,7 +68,6 @@ export default function ProductPage() { //modificar essa pagina para que o produ
           installment={9.99}
         />
       </section>
-      <Footer />
     </div>
   );
 }

@@ -1,3 +1,5 @@
+"use client"
+
 import styles from "./carrinho.module.css";
 import Image from "next/image";
 import CarrinhoV from "../../../public/carrinhoVazio.svg";
@@ -8,31 +10,44 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Carrinho(){
-    const [carrinho, setCarrinho] = useState([]);
+    const [itensCar,setItensCar] = useState([]);
 
-    useEffect(() => { //função para listar produtos do carrinho
-        const fetchCarrinho = async () => {
-            try {
-                const response = await axios.get('http://localhost:3000/carrinho');
-                setCarrinho(response.data);
-            } catch (error) {
-                console.error('Erro ao buscar produtos do carrinho:', error);
-            }
+    useEffect(() =>{
+
+        const fetchItensCar = async () => {
+            try{
+                const retorno = await fetch('http://localhost:3000/carrinho');
+                if (retorno.ok){
+                    const data = await retorno.json();
+                    setItensCar(data);
+                }
+                else{
+                    console.error('Erro ao buscar itens do carrinho');
+                }
+            } catch(error){
+                console.error('Erro de rede:', error);
+            } 
+            
         };
 
-        fetchCarrinho();
+        fetchItensCar();
     }, []);
 
-    //usar um carrinho.length === 0 para verificar se o carrinho está vazio pode ser uma opção para ver se o carrinho está vazio
     return(
         <>
-            <div className={styles.carrinho}>
-    <           div className={styles.titulo}>
-                    <Image className={styles.img} src={CarrinhoV} alt="carrinhoVazio" priority />
-                    <h1>Seu carrinho está vazio</h1>
+            {itensCar.length === 0 ? (
+                <div className={styles.carrinho}>
+                   <div className={styles.titulo}>
+                        <Image className={styles.img} src={CarrinhoV} alt="carrinhoVazio" priority />
+                        <h1>Seu carrinho está vazio</h1>
+                    </div>
+            
                 </div>
 
-            </div>
+            ) : (
+                <CarrinhoCheio/>
+            )}
+
 
             <Vistos tituloSecao="Vistos recentemente"/>
 
