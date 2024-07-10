@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  background-color: var(--50);
+}
+
+.container > h1 {
+  margin: 0px;
+  padding: 0px;
+  font-size: 3.75rem;
+  line-height: 73px;
+  font-weight: 800;
+  margin-top: 72px;
+  color: var(--950);
+}
+
+.container > section {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
