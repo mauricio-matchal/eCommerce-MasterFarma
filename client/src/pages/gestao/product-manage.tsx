@@ -8,8 +8,18 @@ import { InputImage } from "@/components/input image/input-image";
 import style from "@/pages/gestao/manage.module.css";
 import axios from "axios";
 
+//tipagem dos atributos para se fazer a filtragem
+type Produto = {
+  codigo: number;
+  nome: string;
+  preco_ant: number;
+  preco_atual: number;
+  categoria: string;
+};
+
 export function ProductManagePage() {
   const [createIsVisible, setCreateIsVisible] = useState(false);
+  const [filteredProducts, setFilteredProducts] = useState<Produto[]>([]); //adiçao desse useState
   const [formData, setFormData] = useState({
     nome: "",
     preco_ant: "",
@@ -18,7 +28,7 @@ export function ProductManagePage() {
     categoria: "",
   });
 
-  const [produtos, setProdutos] = useState([]);
+  const [produtos, setProdutos] = useState<Produto[]>([]); //adição dessa linha
 
   useEffect(() => {
     fetchProdutos();
@@ -26,14 +36,15 @@ export function ProductManagePage() {
 
   async function fetchProdutos() { //função de buscar todos os produtos
     try {
-      const response = await axios.get("http://localhost:3000/produtos");
+      const response = await axios.get<Produto[]>("http://localhost:3000/produtos"); //modificação dessa linha 
       setProdutos(response.data);
+      setFilteredProducts(response.data); //adiçao do setFiltered
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
     }
   }
     
-  function handleInputChange(event: { target: { id: any; value: any } }) {
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) { //modificação do parâmetro
     const { id, value } = event.target;
     setFormData({ ...formData, [id]: value });
   }
@@ -73,7 +84,7 @@ export function ProductManagePage() {
     }
   }
 
-  async function manageEdit(codigo: number, updatedData: any) { //vai precisar modificar essa propriedade no card protrait
+  async function manageEdit(codigo: number, updatedData: Partial<Produto>) { //vai precisar modificar essa propriedade no card protrait
     try {
       await axios.put(`http://localhost:3000/produtos/${codigo}`, updatedData);
       fetchProdutos();
@@ -277,7 +288,7 @@ export function ProductManagePage() {
 
       {/* Grid de Produtos e Filtro */ } {/* modificar o grid para retornar os produtos conforme o banco de dados */}
       <main className={style.grid}>
-        <Filter />
+        <Filter setFilteredProducts={setFilteredProducts} /> {/* modificação */}
         <ProductCardP
           image={CarmedProduct}
           title={"Hidratante Labial Carmed Barbie 65 Pink 10g"}

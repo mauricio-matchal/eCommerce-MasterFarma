@@ -1,6 +1,56 @@
+/*Tem que fazer outro filtro para a página de resultados que vai usar as rotas de buscar por nome e categoria e 
+e por buscar por nome e preço (acho que dá para reaproveitar essa e adpatar, mas vcs que sabem)*/
+import { useState } from "react";
+import axios from "axios";
 import style from "@/components/filter/filter.module.css";
 
-export function Filter() {
+//tipagem dos atributos para se fazer a filtragem
+type Produto = {
+  codigo: number;
+  nome: string;
+  preco_ant: number;
+  preco_atual: number;
+  categoria: string;
+};
+
+type FilterProps = {
+  setFilteredProducts: (products: Produto[]) => void;
+};
+
+export function Filter({ setFilteredProducts }: FilterProps) {
+  const [category, setCategory] = useState<string>("");
+  const [priceRange, setPriceRange] = useState<string>("");
+
+  //função de para filtrar por categoria integrando com o banco de dados
+  const handleCategoryChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedCategory = event.target.name;
+    setCategory(selectedCategory);
+
+    try {
+      const response = await axios.get<Produto[]>(
+        `http://localhost:3000/produtos/categoria/${selectedCategory}`
+      );
+      setFilteredProducts(response.data);
+    } catch (error) {
+      console.error("Erro ao buscar produtos pela categoria:", error);
+    }
+  };
+
+  //função para filtrar por preço integrando com o banco de dados
+  const handlePriceChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedPrice = event.target.id;
+    setPriceRange(selectedPrice);
+
+    try {
+      const response = await axios.get<Produto[]>(
+        `http://localhost:3000/produtos/preco/${selectedPrice}`
+      );
+      setFilteredProducts(response.data);
+    } catch (error) {
+      console.error("Erro ao buscar produtos pelo preço:", error);
+    }
+  };
+
   return (
     <div className={style.container}>
       <div className={style.background}>
@@ -11,6 +61,7 @@ export function Filter() {
             className={style.checkbox}
             name="medicamentos"
             id="medicamentos"
+            onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
           <label htmlFor="checkbox">Medicamentos</label>
         </div>
@@ -20,6 +71,7 @@ export function Filter() {
             className={style.checkbox}
             name="suplementos"
             id="suplementos"
+            onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
           <label htmlFor="suplementos">Suplementos</label>
         </div>
@@ -30,6 +82,7 @@ export function Filter() {
             className={style.checkbox}
             name="higiene"
             id="higiene"
+            onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
           <label htmlFor="higiene">Higiene</label>
         </div>
@@ -40,6 +93,7 @@ export function Filter() {
             className={style.checkbox}
             name="beleza"
             id="beleza"
+            onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
           <label htmlFor="beleza">Beleza</label>
         </div>
@@ -50,6 +104,7 @@ export function Filter() {
             className={style.checkbox}
             name="bebes"
             id="bebes"
+            onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
           <label htmlFor="bebes">Bebês</label>
         </div>
@@ -60,6 +115,7 @@ export function Filter() {
             className={style.checkbox}
             name="perfumaria"
             id="perfumaria"
+            onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
           <label htmlFor="perfumaria">Perfumaria</label>
         </div>
@@ -70,9 +126,10 @@ export function Filter() {
             type="radio"
             className={style.checkbox}
             name="price"
-            id="ate50"
+            id="ate-50" //modifiquei a identificação do id
+            onChange={handlePriceChange} //chama a função de filtrar por preço
           />
-          <label htmlFor="ate50">Até R$50,00</label>
+          <label htmlFor="ate-50">Até R$50,00</label>
         </div>
 
         <div>
@@ -80,9 +137,10 @@ export function Filter() {
             type="radio"
             className={style.checkbox}
             name="price"
-            id="ate100"
+            id="ate-100" //modifiquei a identificação do id
+            onChange={handlePriceChange} //chama a função de filtrar por preço
           />
-          <label htmlFor="ate100">Até R$100,00</label>
+          <label htmlFor="ate-100">Até R$100,00</label>
         </div>
 
         <div>
@@ -90,9 +148,10 @@ export function Filter() {
             type="radio"
             className={style.checkbox}
             name="price"
-            id="ate200"
+            id="ate-200" //modifiquei a identificação do id
+            onChange={handlePriceChange} //chama a função de filtrar por preço
           />
-          <label htmlFor="ate200">Até R$200,00</label>
+          <label htmlFor="ate-200">Até R$200,00</label>
         </div>
 
         <div>
@@ -100,11 +159,12 @@ export function Filter() {
             type="radio"
             className={style.checkbox}
             name="price"
-            id="acima200"
+            id="acima-200" //modifiquei a identificação do id
+            onChange={handlePriceChange} //chama a função de filtrar por preço
           />
-          <label htmlFor="acima200">Acima de R$200,00</label>
+          <label htmlFor="acima-200">Acima de R$200,00</label>
         </div>
-
+        {/* tem que ver o que vai fazer aqui (se vai deixar sem funcionalidade ou se vai fazer algo ou então deletar essa parte)*/}
         <h3 className={style.title}>Ordenar por</h3>
         <div>
           <input
