@@ -22,7 +22,6 @@ export default function CarrinhoCheio() {
   const [cep, setCep] = useState("");
   const [cupom, setCupom] = useState("");
   const [itens, setItens] = useState<ItemCarrinho[]>([]);
-  const [itemAtual, setItemAtual] = useState<ItemCarrinho | null>(null);
 
   const informarCep = (event: ChangeEvent<HTMLInputElement>) => {
     const valorCep = event.target.value;
@@ -38,11 +37,7 @@ export default function CarrinhoCheio() {
     try {
       const response = await axios.get("http://localhost:3000/carrinho");
       console.log("Resposta da API:", response.data);
-      if (Array.isArray(response.data)) {
-        setItens(response.data);
-      } else {
-        setItens([]); // Garantir que seja um array vazio se a resposta não for um array
-      }
+      setItens(response.data);
     } catch (error) {
       console.error("Erro ao listar produto no carrinho:", error);
     }
@@ -50,12 +45,10 @@ export default function CarrinhoCheio() {
 
   const deletarItem = async (codigo: number) => {
     try {
-      const response = await axios.delete(`http://localhost:3000/carrinho/${codigo}`);
-      console.log("Resposta da API ao deletar item:", response.data);
-      const itemRemovido = itens.filter((item) => item.codigo !== codigo);
-      setItens(itemRemovido);
+      await axios.delete(`http://localhost:3000/carrinho/${codigo}`); 
+      fetchItemCarrinho();
     } catch (error) {
-      console.error("Erro ao retirar item:", error);
+      console.error("Erro ao deletar produto:", error);
     }
   };
 
@@ -124,42 +117,38 @@ export default function CarrinhoCheio() {
                 </div>
 
                 <div className={styles.parcela}>
-                  <p>ou 3x de {item.preco_atual / 3}</p>
+                  <p>ou 3x de {(item.preco_atual / 3).toFixed(2)}</p>
                 </div>
               </div>
 
               <div className={styles.total}>
                 <div className={styles.quantidade}>
                   <button
-                    type="submit"
+                    type="button"
                     onClick={() => diminuirQuantidade(item.codigo)}
                     className={styles.botaoDiminuir}
-                  >
-                    -
-                  </button>
+                  >-</button>
                   <div className={styles.quantProd}>
                     <p>{item.quantidade}</p>
                   </div>
                   <button
-                    type="submit"
+                    type="button"
                     onClick={() => aumentarQuantidade(item.codigo)}
                     className={styles.botaoAumentar}
-                  >
-                    +
-                  </button>
+                  >+</button>
                 </div>
 
                 <div className={styles.valorTotal}>
                   <h2>Subtotal</h2>
                   <div className={styles.caixinha}>
-                    <p>R$0,00</p>
+                    <p>R${(item.preco_atual * item.quantidade).toFixed(2)}</p>
                   </div>
                 </div>
               </div>
 
               <div className={styles.lixeira}>
                 <button
-                  type="submit"
+                  type="button"
                   onClick={() => deletarItem(item.codigo)}
                   className={styles.botaoDelete}
                 >
