@@ -9,10 +9,13 @@ import Carrinho from "../../public/carrinho.svg";
 import Link from 'next/link';
 import styles from "./cabecalho.module.css";
 import axios from 'axios';
+import { useRouter } from 'next/navigation'; //hook que usado na linha 18 e na função ir para o carrinho
+
 
 export default function Cabecalho() {
     const [pesquisa, setPesquisa] = useState('');
     const [resultados, setResultados] = useState([]);
+    const router = useRouter();
 
     const barraPesquisa = (event: ChangeEvent<HTMLInputElement>) => {
         const valorPesquisa = event.target.value;
@@ -27,6 +30,10 @@ export default function Cabecalho() {
         } catch (error) {
             console.error('Erro ao buscar produtos:', error);
         }
+    };
+
+    const irParaCarrinho = () => { //função para levar o usuário ao carrinho(talvez não precise dele mas deixei pra caso seja util, se não pode apagar!)
+        router.push('/carrinho');
     };
 
     return (
@@ -47,7 +54,7 @@ export default function Cabecalho() {
                     
                     <Link className={styles.txt} href='/carrinho'>
                         <div className={styles.carrinho}>
-                            <button type="submit" className={styles.botaoCarrinho}>
+                            <button type="submit" className={styles.botaoCarrinho} >
                                 <Image className={styles.imgCarrinho} src={Carrinho} alt="Carrinho" priority />
                             </button>
                             <p>R$0,00</p>
@@ -55,7 +62,7 @@ export default function Cabecalho() {
                     </Link>
                 </div>
             </div>
-            {/*fazer com que a função de busca redirecione para a página de resultados e gerar o resultado dessa busca na página de resultados */}
+            {/*fazer com que a função de busca redirecione para a página de resultados e gerar o resultado dessa busca na página de resultados (um map talvez pode ajudar ) */}
             <div className={styles.barraPesquisa}> 
                 <form className={styles.formPesquisa} onSubmit={buscarProdutos}>
                     <input

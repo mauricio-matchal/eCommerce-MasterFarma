@@ -1,11 +1,13 @@
 "use client"
-import { useState, useEffect} from 'react';
+
 import styles from "./carrinho.module.css";
 import Image from "next/image";
 import CarrinhoV from "../../../public/carrinhoVazio.svg";
 import Vistos from "../../../components/ofertas/ofertas";
 import Outros from "../../../components/maisVendidos/vendidos"
 import CarrinhoCheio from "../../../components/carrinhoCheio/carrinhoCheio";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Carrinho(){
     const [itensCar,setItensCar] = useState([]);
