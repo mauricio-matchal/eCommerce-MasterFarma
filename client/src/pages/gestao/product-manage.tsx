@@ -64,7 +64,7 @@ export function ProductManagePage() {
     setCreateIsVisible(!createIsVisible);
   }
 
-  async function manageDelete(codigo) { //vai precisar modificar essa propriedade no card portrait
+  async function manageDelete(codigo: number) { //vai precisar modificar essa propriedade no card portrait
     try {
       await axios.delete(`http://localhost:3000/produtos/${codigo}`);
       fetchProdutos();
@@ -73,7 +73,7 @@ export function ProductManagePage() {
     }
   }
 
-  async function manageEdit(codigo, updatedData) { //vai precisar modificar essa propriedade no card protrait
+  async function manageEdit(codigo: number, updatedData: any) { //vai precisar modificar essa propriedade no card protrait
     try {
       await axios.put(`http://localhost:3000/produtos/${codigo}`, updatedData);
       fetchProdutos();
