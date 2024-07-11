@@ -32,7 +32,7 @@ div.oldprice {
   top: 50%;
   left: 50%;
   border-radius: 9999px;
-  width: 110px;
+  width: 80px;
   height: 4px;
   transform: translate(-50%, -50%) rotate(-15deg);
   background-color: var(--950);
@@ -82,6 +82,7 @@ button.edit {
   background-color: var(--950);
   border-radius: 15px;
   color: #fff;
+  font-family: "Montserrat", sans-serif;
 }
 
 button.delete {
