@@ -35,7 +35,7 @@ export default async function Home() {
 
   return (
     <>
-      {/* <div className={style.home}>
+      <div className={style.home}>
         <div className={style.carro}>
           {renderImage(carrossel.data.prop, 'prop')}
           {renderImage(carrossel.data.prop1, 'prop1')}
@@ -50,8 +50,8 @@ export default async function Home() {
     <Ofertas tituloSecao="Ofertas do dia"/>
     <Marcas/>
     <Kit/>
-    <Vendidos tituloSecao="Mais vendidos"/> */}
-      <ProductManagePage />
+    <Vendidos tituloSecao="Mais vendidos"/>
+      {/* <ProductManagePage /> */}
     </>
   );
 }
