@@ -15,14 +15,14 @@
 .titulo{
     display: grid;
     width: 200px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     
 }
 
 .titulo h2{
-    color: #EBFFFE;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    color: #EBFFFE;  
 }
 
 .precoOriginal p{
@@ -81,6 +81,14 @@
 .imagem{
     width: 250px;
     height: 250px;
+}
+
+.link{
+    text-decoration: none;
+}
+
+.link:hover .tit {
+    color: #10677A;
 }
 @media (max-width: 768px) {
     .ofertas{

@@ -1,5 +1,4 @@
 "use client"
-
 import style from "./ofertas.module.css";
 import Image from "next/image";
 import Hidratante from "../../public/hidratante.svg";
@@ -7,6 +6,7 @@ import Traco from "../../public/traco.svg";
 import Rolagem from "../../components/indicadorNav/rolagemO";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 interface OfertasProps {
   tituloSecao: string;
@@ -14,7 +14,7 @@ interface OfertasProps {
 
 export interface ListaProdutos {
   nome: string;
-  preco_ant: number;
+  preco_ant?: number; // opcional, se necessário
   preco_atual: number;
   codigo: number;
   categoria: string;
@@ -58,14 +58,19 @@ export default function Ofertas({ tituloSecao }: OfertasProps) {
           <div key={item.codigo} className={style.produto}>
             <Image className={style.imagem} src={Hidratante} alt="hidratante" />
             <div className={style.titulo}>
-              <h2>{item.nome}</h2>
+              {/* Correção no uso do Link */}
+              <Link  className={style.link} href="/produto/product-page">
+                
+                <h2 className={style.tit}>{item.nome}</h2>
+            
+              </Link>
             </div>
             <div className={style.precoOriginal}>
               <p>R${item.preco_ant?.toFixed(2)}</p>
               <Image className={style.traco} src={Traco} alt="traço" />
             </div>
             <div className={style.desconto}>
-              <h1>R${item.preco_atual?.toFixed(2)}</h1>
+              <h1>R${item.preco_atual.toFixed(2)}</h1>
             </div>
             <div className={style.parcela}>
               <p>ou 3x de {(item.preco_atual / 3).toFixed(2)}</p>
