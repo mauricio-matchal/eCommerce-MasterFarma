@@ -7,6 +7,7 @@ import { InputImageLarge } from "@/components/input image large/input-image-larg
 import { InputImage } from "@/components/input image/input-image";
 import style from "@/pages/gestao/manage.module.css";
 import axios from "axios";
+import { StaticImageData } from "next/image";
 
 //tipagem dos atributos para se fazer a filtragem
 type Produto = {
@@ -15,10 +16,11 @@ type Produto = {
   preco_ant: number;
   preco_atual: number;
   categoria: string;
+  // image: StaticImageData;
 };
 
 export function ProductManagePage() {
-  const [createIsVisible, setCreateIsVisible] = useState(false);
+  const [modalIsVisible, setModalIsVisible] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState<Produto[]>([]); //adiçao desse useState
   const [formData, setFormData] = useState({
     nome: "",
@@ -34,22 +36,29 @@ export function ProductManagePage() {
     fetchProdutos();
   }, []);
 
-  async function fetchProdutos() { //função de buscar todos os produtos
+  async function fetchProdutos() {
+    //função de buscar todos os produtos
     try {
-      const response = await axios.get<Produto[]>("http://localhost:3000/produtos"); //modificação dessa linha 
+      const response = await axios.get<Produto[]>(
+        "http://localhost:3000/produtos"
+      ); //modificação dessa linha
       setProdutos(response.data);
       setFilteredProducts(response.data); //adiçao do setFiltered
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
     }
   }
-    
-  function handleInputChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) { //modificação do parâmetro
+
+  function handleInputChange(
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    //modificação do parâmetro
     const { id, value } = event.target;
     setFormData({ ...formData, [id]: value });
   }
 
-  async function handleSubmit() { //função de criar produto
+  async function handleSubmit() {
+    //função de criar produto
     try {
       const response = await axios.post(
         "http://localhost:3000/produtos",
@@ -65,17 +74,30 @@ export function ProductManagePage() {
         categoria: "",
       });
       // Ocultar o formulário de criação
-      setCreateIsVisible(false);
+      setModalIsVisible(false);
     } catch (error) {
       console.error("Erro ao criar produto:", error);
     }
   }
 
   function toggleCreateVisibility() {
-    setCreateIsVisible(!createIsVisible);
+    setModalIsVisible(!modalIsVisible);
   }
 
-  async function manageDelete(codigo: number) { //vai precisar modificar essa propriedade no card portrait
+  function manageCancel() {
+    //quando a pessoa cancela o form é apagado
+    setFormData({
+      nome: "",
+      preco_ant: "",
+      preco_atual: "",
+      codigo: "",
+      categoria: "",
+    });
+    toggleCreateVisibility();
+  }
+
+  async function manageDelete(codigo: number) {
+    //vai precisar modificar essa propriedade no card portrait
     try {
       await axios.delete(`http://localhost:3000/produtos/${codigo}`);
       fetchProdutos();
@@ -84,7 +106,8 @@ export function ProductManagePage() {
     }
   }
 
-  async function manageEdit(codigo: number, updatedData: Partial<Produto>) { //vai precisar modificar essa propriedade no card protrait
+  async function manageEdit(codigo: number, updatedData: Partial<Produto>) {
+    //vai precisar modificar essa propriedade no card protrait
     try {
       await axios.put(`http://localhost:3000/produtos/${codigo}`, updatedData);
       fetchProdutos();
@@ -96,7 +119,7 @@ export function ProductManagePage() {
   return (
     <div className={style.container}>
       <h1 className={style.title}>Gestão dos produtos</h1>
-      {createIsVisible ? (
+      {modalIsVisible ? (
         <div className={style.modalcontainer}>
           <div className={style.center}>
             <h2 className={style.title}>Criar Produto</h2>
@@ -197,7 +220,6 @@ export function ProductManagePage() {
                       value="Suplementos"
                       checked={formData.categoria === "Suplementos"}
                       onChange={handleInputChange}
-
                       className={style.adjustmargin}
                     />
                     <label htmlFor="suplementos" className="font-medium">
@@ -210,7 +232,6 @@ export function ProductManagePage() {
                       value="Higiene"
                       checked={formData.categoria === "Higiene"}
                       onChange={handleInputChange}
-
                       className={style.adjustmargin}
                     />
                     <label htmlFor="higiene" className="font-medium">
@@ -225,7 +246,6 @@ export function ProductManagePage() {
                       value="Beleza"
                       checked={formData.categoria === "Beleza"}
                       onChange={handleInputChange}
-
                       className={style.adjustmargin}
                     />
                     <label htmlFor="beleza" className="font-medium">
@@ -238,7 +258,6 @@ export function ProductManagePage() {
                       value="Bebês"
                       checked={formData.categoria === "Bebês"}
                       onChange={handleInputChange}
-
                       className={style.adjustmargin}
                     />
                     <label htmlFor="bebes" className="font-medium">
@@ -251,7 +270,6 @@ export function ProductManagePage() {
                       value="Perfumaria"
                       checked={formData.categoria === "Perfumaria"}
                       onChange={handleInputChange}
-        
                       className={style.adjustmargin}
                     />
                     <label htmlFor="perfumaria" className="font-medium">
@@ -262,10 +280,7 @@ export function ProductManagePage() {
 
                 {/* Botões */}
                 <div className={style.marginTopRem}>
-                  <button
-                    onClick={toggleCreateVisibility}
-                    className={style.cancel}
-                  >
+                  <button onClick={manageCancel} className={style.cancel}>
                     Cancelar
                   </button>
                   <button onClick={handleSubmit} className={style.submit}>
@@ -285,60 +300,28 @@ export function ProductManagePage() {
           Adicionar produto
         </button>
       )}
-
-      {/* Grid de Produtos e Filtro */ } {/* modificar o grid para retornar os produtos conforme o banco de dados */}
+      {/* Grid de Produtos e Filtro */}{" "}
+      {/* modificar o grid para retornar os produtos conforme o banco de dados */}
       <main className={style.grid}>
         <Filter setFilteredProducts={setFilteredProducts} /> {/* modificação */}
-        <ProductCardP
-          image={CarmedProduct}
-          title={"Hidratante Labial Carmed Barbie 65 Pink 10g"}
-          oldPrice={49.99}
-          price={29.99}
-          installment={9.99}
-          editable={true}
-          manageDelete={manageDelete}
-          manageEdit={manageEdit}
-        />
-        <ProductCardP
-          image={CarmedProduct}
-          title={"Hidratante Labial Carmed Barbie 65 Pink 10g"}
-          oldPrice={49.99}
-          price={29.99}
-          installment={9.99}
-          editable={true}
-          manageDelete={manageDelete}
-          manageEdit={manageEdit}
-        />
-        <ProductCardP
-          image={CarmedProduct}
-          title={"Hidratante Labial Carmed Barbie 65 Pink 10g"}
-          oldPrice={49.99}
-          price={29.99}
-          installment={9.99}
-          editable={true}
-          manageDelete={manageDelete}
-          manageEdit={manageEdit}
-        />
-        <ProductCardP
-          image={CarmedProduct}
-          title={"Hidratante Labial Carmed Barbie 65 Pink 10g"}
-          oldPrice={49.99}
-          price={29.99}
-          installment={9.99}
-          editable={true}
-          manageDelete={manageDelete}
-          manageEdit={manageEdit}
-        />
-        <ProductCardP
-          image={CarmedProduct}
-          title={"Hidratante Labial Carmed Barbie 65 Pink 10g"}
-          oldPrice={49.99}
-          price={29.99}
-          installment={9.99}
-          editable={true}
-          manageDelete={manageDelete}
-          manageEdit={manageEdit}
-        />
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <ProductCardP
+              key={product.codigo}
+              image={CarmedProduct} // Adjust according to your image attribute
+              title={product.nome}
+              oldPrice={product.preco_ant}
+              price={product.preco_atual}
+              installment={Math.ceil((product.preco_atual / 3) * 100) / 100} // Example calculation for installment
+              editable={true}
+              manageDelete={() => manageDelete(product.codigo)}
+              // manageEdit={() => manageEdit(product.codigo)}
+              // discutir como vai funcionar essa parte
+            />
+          ))
+        ) : (
+          <p>No products available.</p>
+        )}
       </main>
     </div>
   );
