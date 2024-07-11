@@ -7,6 +7,7 @@ import Traco from "../../public/traco.svg";
 import Lixeira from "../../public/lixeira.svg";
 import CarroCheio from "../../public/carrinhoCheio.svg";
 
+
 export interface ItemCarrinho {
   quantidade: number;
   product: number;
@@ -27,6 +28,7 @@ export default function CarrinhoCheio({ item }: CarrinhoCheioProps) {
   const [cep, setCep] = useState("");
   const [cupom, setCupom] = useState("");
   const [itens, setItens] = useState<ItemCarrinho[]>([]);
+  const [frete, setFrete] = useState(0.00);
 
   const informarCep = (event: ChangeEvent<HTMLInputElement>) => {
     const valorCep = event.target.value;
@@ -64,6 +66,36 @@ export default function CarrinhoCheio({ item }: CarrinhoCheioProps) {
       console.error("Erro ao deletar produto:", error);
     }
   }
+
+  async function editarQuant(codigo: number, novaQuantidade: number) {
+    try{
+      await axios.put(`http://localhost:3000/carrinho/${codigo}`, {quantidade: novaQuantidade});
+      fetchItemCarrinho();
+    } catch (error){
+      console.error("Erro ao editar quantidade do produto:", error);
+    }
+  }
+
+  const aumentarQuant = (item: ItemCarrinho) =>{
+    const novaQuantidade = item.quantidade + 1;
+    editarQuant(item.product, novaQuantidade);
+  }
+
+  const diminuirQuant = (item: ItemCarrinho) =>{
+    if(item.quantidade > 1){
+      const novaQuantidade = item.quantidade - 1;
+      editarQuant(item.product, novaQuantidade);
+    }
+  };
+
+  const calcularSubtotal = () => {
+    return itens.reduce((acc, item) => acc + item.produto.preco_atual * item.quantidade, 0).toFixed(2);
+  };
+
+  const calcularTotal = () => {
+    const subtotal = parseFloat(calcularSubtotal());
+    return (subtotal + frete).toFixed(2);
+  };
 
   useEffect(() => {
     fetchItemCarrinho();
@@ -106,13 +138,17 @@ export default function CarrinhoCheio({ item }: CarrinhoCheioProps) {
                   <button
                     type="button"
                     className={styles.botaoDiminuir}
+                    onClick={() => diminuirQuant(item)}
                   >-</button>
                   <div className={styles.quantProd}>
                     <p>{item.quantidade}</p>
                   </div>
+
+                  
                   <button
                     type="button"
                     className={styles.botaoAumentar}
+                    onClick={() => aumentarQuant(item)}
                   >+</button>
                 </div>
 
@@ -181,12 +217,12 @@ export default function CarrinhoCheio({ item }: CarrinhoCheioProps) {
                 <p>Resumo do pedido</p>
                 <div className={styles.subT}>
                   <p className={styles.text}>Subtotal</p>
-                  <p className={styles.boldText}>R$0,00</p>
+                  <p className={styles.boldText}>R${calcularSubtotal()}</p>
                 </div>
 
                 <div className={styles.valorCe}>
                   <p className={styles.text}>Entrega</p>
-                  <p className={styles.boldText}>R$0,00</p>
+                  <p className={styles.boldText}>R${frete.toFixed(2)}</p>
                 </div>
               </div>
 
@@ -195,7 +231,7 @@ export default function CarrinhoCheio({ item }: CarrinhoCheioProps) {
               <div className={styles.totalPedido}>
                 <div className={styles.totalAPagar}>
                   <p className={styles.text}>Total</p>
-                  <p className={styles.boldText}>R$0,00</p>
+                  <p className={styles.boldText}>R${calcularTotal()}</p>
                 </div>
 
                 <div className={styles.botoesCompra}>
