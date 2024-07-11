@@ -45,7 +45,7 @@ export function ProductCardP({
         <h3 className={style.oldprice}>R${oldPrice}</h3>
       </div>
       <h1 className={style.price}>R${price}</h1>
-      <p className={style.installment}>Ou 3x de {installment}</p>
+      <p className={style.installment}>Ou 3x de R${installment}</p>
       {canEdit ? (
         <div className={style.button}>
           <button onClick={manageEdit} className={style.edit}>

@@ -176,6 +176,7 @@ button.cancel {
   border: 1px solid var(--600);
   background-color: transparent;
   color: var(--50);
+  font-family: "Montserrat", sans-serif;
 }
 
 button.submit {
@@ -188,6 +189,7 @@ button.submit {
   height: 69px;
   color: var(--50);
   border: none;
+  font-family: "Montserrat", sans-serif;
 }
 
 button.cancel:hover,
