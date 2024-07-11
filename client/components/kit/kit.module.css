@@ -11,14 +11,19 @@
 
 .titulo{
     font-weight: bold;
-    font-size:28px;
+    font-size:24px;
     color: #053947;
 }
 
 .elemento{
     display: flex;
     flex-direction: row;
-    gap:25px;
+    gap:90px;
+}
+
+.imagem{
+    width: 320px;
+    height: 420px;
 }
 
 @media (max-width: 768px) {
@@ -31,10 +36,6 @@
         display: none;
     }
     
-    .imagem{
-        width: 300px;
-        height: 400px;
-    }
     
     .elemento{
         margin-top: -15px;

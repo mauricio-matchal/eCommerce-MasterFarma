@@ -7,23 +7,21 @@
 
 .titulo{
     font-weight: bold;
-    font-size:28px;
-    color: #053947;
-    white-space: normal; 
-    word-wrap: break-word; 
-    max-width: 80%; 
+    font-size:24px;
+    color: #053947; 
 }
 
 .produto{
     display: flex;
     flex-direction: row;
     background-color: #00A2B9;
-    width: 580px;
-    height: 265px;
+    width: 520px;
+    height: 210px;
     padding: 15px;
     border-radius: 30px;
     margin-bottom: 40px;
     gap:15px;
+    
 }
 
 .precoOriginal p{
@@ -56,13 +54,28 @@
 }
 
 .tituloP{
-    color:#EBFFFE;
+    display: grid;
+    width: 200px; 
+    
 }
 
-.elemento{
-    display: flex;
-    flex-direction:row;
-    gap: 25px;
+.tituloP h2{
+    color:#EBFFFE;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.componente {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    
+}
+
+.imagem{
+    width: 200px;
+    height: 200px;
 }
 
 @media (max-width: 768px) {

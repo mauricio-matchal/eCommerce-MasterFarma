@@ -8,18 +8,21 @@
 
 .titOferta h1{
     font-weight: bold;
-    font-size:55px;
+    font-size:45px;
     color: #053947;
 }
 
-.componentes{
-    background-color: #00A2B9;
-    padding: 15px;
-    border-radius: 30px;
+.titulo{
+    display: grid;
+    width: 200px; 
+    
 }
 
 .titulo h2{
     color: #EBFFFE;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .precoOriginal p{
@@ -51,10 +54,7 @@
     margin-top: 5px;
 }
 
-.produtos {
-    display: flex;
-    gap: 20px; 
-}
+
 
 .produto {
     background-color: #00A2B9;
@@ -62,6 +62,8 @@
     border-radius: 30px;
     display: flex;
     flex-direction: column;
+    width: 250px;
+    height: 460px;
 
 }
 
@@ -69,6 +71,17 @@
     display: none;
 }
 
+.componente{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas com largura igual */
+    gap: 20px;
+    
+}
+
+.imagem{
+    width: 250px;
+    height: 250px;
+}
 @media (max-width: 768px) {
     .ofertas{
         margin-left: 40px;
