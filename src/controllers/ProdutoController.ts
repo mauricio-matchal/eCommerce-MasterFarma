@@ -3,6 +3,21 @@ import { Request, Response } from 'express';
 
 const prisma = new PrismaClient();
 
+const getPrecoCondition = (intervalo: string) => { //condições de intervalos usadas nas funções buscarProdutosPelaCategoriaEPreco e buscarProdutosPorNomeCategoriaEPreco
+    switch (intervalo) {
+        case 'ate-50':
+            return { lte: 50 };
+        case 'ate-100':
+            return { lte: 100 };
+        case 'ate-200':
+            return { lte: 200 };
+        case 'acima-200':
+            return { gt: 200 };
+        default:
+            return null;
+    }
+};
+
 export const criarProduto = async (req: Request, res: Response) => {
     const { nome, preco_ant, preco_atual, codigo, categoria } = req.body;
     try {
@@ -170,5 +185,56 @@ export const buscarProdutoPeloCodigo = async (req: Request, res: Response) => {
         res.json(produto);
     } catch (error) {
         res.status(500).json({ error: 'Erro ao buscar produto pelo código' });
+    }
+};
+
+export const buscarProdutosPelaCategoriaEPreco = async (req: Request, res: Response) => { //função para fazer a rota do filtro da página de gestão
+    const { categoria, intervalo } = req.query;
+    const conditions: any = {};
+
+    if (categoria) {
+        conditions.categoria = categoria;
+    }
+    if (intervalo) {
+        const precoCondition = getPrecoCondition(intervalo as string);
+        if (precoCondition) {
+            conditions.preco_atual = precoCondition;
+        } else {
+            return res.status(400).json({ error: 'Intervalo de preço inválido' });
+        }
+    }
+
+    try {
+        const produtos = await prisma.produto.findMany({ where: conditions });
+        res.json(produtos);
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao buscar produtos pela categoria e preço' });
+    }
+};
+
+export const buscarProdutosPorNomeCategoriaEPreco = async (req: Request, res: Response) => { // funçao para fazer a rota do filtro da página de resultados
+    const { nome, categoria, intervalo } = req.query;
+    const conditions: any = {};
+
+    if (nome) {
+        conditions.nome = { contains: nome as string };
+    }
+    if (categoria) {
+        conditions.categoria = categoria;
+    }
+    if (intervalo) {
+        const precoCondition = getPrecoCondition(intervalo as string);
+        if (precoCondition) {
+            conditions.preco_atual = precoCondition;
+        } else {
+            return res.status(400).json({ error: 'Intervalo de preço inválido' });
+        }
+    }
+
+    try {
+        const produtos = await prisma.produto.findMany({ where: conditions });
+        res.json(produtos);
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao buscar produtos por nome, categoria e preço' });
     }
 };
