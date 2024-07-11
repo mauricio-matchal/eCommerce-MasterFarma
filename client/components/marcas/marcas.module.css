@@ -7,25 +7,25 @@
 
 .titulo{
     font-weight: bold;
-    font-size:28px;
+    font-size:24px;
     color: #053947;
 }
 
 .parte1{
     display: flex;
     flex-direction: row;
-    gap:25px;
+    gap:80px;
 }
 
 .elemento{
     display: flex;
     flex-direction: row;
-    gap: 25px;
+    gap:80px;
 }
 
 .imagem{
-    width: 288px;
-    height: 288px;
+    width: 240px;
+    height: 240px;
 }
 
 @media (max-width: 768px) {
