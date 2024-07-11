@@ -1,5 +1,5 @@
 /*Tem que fazer outro filtro para a página de resultados que vai usar as rotas de buscar por nome e categoria e 
-e por buscar por nome e preço (acho que dá para reaproveitar essa e adpatar, mas vcs que sabem)*/
+e buscar por nome e preço ou só a rota de buscar por nome, categoria e preço (acho que dá para reaproveitar essa e adpatar, mas vcs que sabem)*/
 import { useState } from "react";
 import axios from "axios";
 import style from "@/components/filter/filter.module.css";
@@ -17,10 +17,12 @@ type FilterProps = {
   setFilteredProducts: (products: Produto[]) => void;
 };
 
+
 export function Filter({ setFilteredProducts }: FilterProps) {
   const [category, setCategory] = useState<string>("");
   const [priceRange, setPriceRange] = useState<string>("");
 
+/* configuração anterior para caso a atual fique complicada para implementar 
   //função de para filtrar por categoria integrando com o banco de dados
   const handleCategoryChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedCategory = event.target.name;
@@ -50,6 +52,38 @@ export function Filter({ setFilteredProducts }: FilterProps) {
       console.error("Erro ao buscar produtos pelo preço:", error);
     }
   };
+*/
+
+// Função para filtrar produtos por categoria e preço
+const handleFilterChange = async () => {
+  const params: any = {};
+  if (category) params.categoria = category;
+  if (priceRange) params.intervalo = priceRange;
+
+  try {
+    const response = await axios.get<Produto[]>(
+      `http://localhost:3000/produtos/categoria-preco`,
+      { params }
+    );
+    setFilteredProducts(response.data);
+  } catch (error) {
+    console.error("Erro ao buscar produtos pela categoria e preço:", error);
+  }
+};
+
+const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const selectedCategory = event.target.name;
+  setCategory(selectedCategory);
+  handleFilterChange();
+};
+
+const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const selectedPrice = event.target.id;
+  setPriceRange(selectedPrice);
+  handleFilterChange();
+};
+
+
 
   return (
     <div className={style.container}>
