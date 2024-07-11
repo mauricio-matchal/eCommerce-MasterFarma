@@ -56,14 +56,14 @@
 .tituloP{
     display: grid;
     width: 200px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     
 }
 
 .tituloP h2{
     color:#EBFFFE;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .componente {
@@ -76,6 +76,14 @@
 .imagem{
     width: 200px;
     height: 200px;
+}
+
+.link{
+    text-decoration: none;
+}
+
+.link:hover .tit {
+    color: #10677A;
 }
 
 @media (max-width: 768px) {

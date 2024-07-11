@@ -6,7 +6,7 @@ import ProdutoImage from "../../public/hidratante.svg";
 import Traco from "../../public/traco.svg";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import Link from "next/link";
 interface VendidosProps {
   tituloSecao: string;
 }
@@ -59,7 +59,9 @@ export default function Vendidos({ tituloSecao }: VendidosProps) {
 
             <div className={style.informacoes}>
               <div className={style.tituloP}>
-                <h2>{item.nome}</h2>
+                <Link className={style.link} href="/produto/product-page">
+                  <h2 className={style.tit}>{item.nome}</h2>
+                </Link>
               </div>
               <div className={style.precoOriginal}>
                 <p>R${item.preco_ant.toFixed(2)}</p>
