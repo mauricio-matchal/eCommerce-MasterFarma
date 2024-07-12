@@ -10,7 +10,9 @@ import Marcas from "../../components/marcas/marcas";
 import Kit from "../../components/kit/kit";
 import { PrismicNextImage } from "@prismicio/next";
 import Vendidos from "../../components/maisVendidos/vendidos";
+import Produto from "@/pages/produto/product-page";
 import { ProductManagePage } from "@/pages/gestao/product-manage";
+
 
 export default async function Home() {
   const prismic = createClient();
@@ -51,7 +53,8 @@ export default async function Home() {
     <Marcas/>
     <Kit/>
     <Vendidos tituloSecao="Mais vendidos"/>
-      {/* <ProductManagePage /> */}
+    <Produto/>
+    <ProductManagePage/>
     </>
   );
 }

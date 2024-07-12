@@ -17,12 +17,11 @@ type FilterProps = {
   setFilteredProducts: (products: Produto[]) => void;
 };
 
-
 export function Filter({ setFilteredProducts }: FilterProps) {
   const [category, setCategory] = useState<string>("");
   const [priceRange, setPriceRange] = useState<string>("");
 
-/* configuração anterior para caso a atual fique complicada para implementar 
+  /* configuração anterior para caso a atual fique complicada para implementar 
   //função de para filtrar por categoria integrando com o banco de dados
   const handleCategoryChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedCategory = event.target.name;
@@ -54,36 +53,34 @@ export function Filter({ setFilteredProducts }: FilterProps) {
   };
 */
 
-// Função para filtrar produtos por categoria e preço
-const handleFilterChange = async () => {
-  const params: any = {};
-  if (category) params.categoria = category;
-  if (priceRange) params.intervalo = priceRange;
+  // Função para filtrar produtos por categoria e preço
+  const handleFilterChange = async () => {
+    const params: any = {};
+    if (category) params.categoria = category;
+    if (priceRange) params.intervalo = priceRange;
 
-  try {
-    const response = await axios.get<Produto[]>(
-      `http://localhost:3000/produtos/categoria-preco`,
-      { params }
-    );
-    setFilteredProducts(response.data);
-  } catch (error) {
-    console.error("Erro ao buscar produtos pela categoria e preço:", error);
-  }
-};
+    try {
+      const response = await axios.get<Produto[]>(
+        `http://localhost:3000/produtos/categoria-preco`,
+        { params }
+      );
+      setFilteredProducts(response.data);
+    } catch (error) {
+      console.error("Erro ao buscar produtos pela categoria e preço:", error);
+    }
+  };
 
-const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  const selectedCategory = event.target.name;
-  setCategory(selectedCategory);
-  handleFilterChange();
-};
+  const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedCategory = event.target.name;
+    setCategory(selectedCategory);
+    handleFilterChange();
+  };
 
-const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  const selectedPrice = event.target.id;
-  setPriceRange(selectedPrice);
-  handleFilterChange();
-};
-
-
+  const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedPrice = event.target.id;
+    setPriceRange(selectedPrice);
+    handleFilterChange();
+  };
 
   return (
     <div className={style.container}>
@@ -91,9 +88,9 @@ const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         <h3 className={style.title}>Filtrar por categoria</h3>
         <div>
           <input
-            type="checkbox"
+            type="radio"
             className={style.checkbox}
-            name="medicamentos"
+            name="categoria"
             id="medicamentos"
             onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
@@ -101,9 +98,9 @@ const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         </div>
         <div>
           <input
-            type="checkbox"
+            type="radio"
             className={style.checkbox}
-            name="suplementos"
+            name="categoria"
             id="suplementos"
             onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
@@ -112,9 +109,9 @@ const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 
         <div>
           <input
-            type="checkbox"
+            type="radio"
             className={style.checkbox}
-            name="higiene"
+            name="categoria"
             id="higiene"
             onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
@@ -123,9 +120,9 @@ const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 
         <div>
           <input
-            type="checkbox"
+            type="radio"
             className={style.checkbox}
-            name="beleza"
+            name="categoria"
             id="beleza"
             onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
@@ -134,9 +131,9 @@ const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 
         <div>
           <input
-            type="checkbox"
+            type="radio"
             className={style.checkbox}
-            name="bebes"
+            name="categoria"
             id="bebes"
             onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
@@ -145,9 +142,9 @@ const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 
         <div>
           <input
-            type="checkbox"
+            type="radio"
             className={style.checkbox}
-            name="perfumaria"
+            name="categoria"
             id="perfumaria"
             onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
