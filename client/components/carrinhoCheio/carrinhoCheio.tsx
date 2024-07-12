@@ -109,69 +109,70 @@ export default function CarrinhoCheio({ item }: CarrinhoCheioProps) {
       </div>
 
       <div className={styles.elemento}>
-        <div className={styles.produtoContainer}>
-          {itens.map((item) => (
-            <div key={item.product} className={styles.produto}>
-              <Image className={styles.imagem} src={Produto} alt="hidratante" />
+  <div className={styles.produtoContainer} style={{ display: 'flex', flexDirection: 'row' }}>
+    {itens.map((item) => (
+      <div key={item.product} className={styles.produto}>
+        <Image className={styles.imagem} src={Produto} alt="hidratante" />
 
-              <div className={styles.informacoes}>
-                <div className={styles.tituloP}>
-                  <h2>{item.produto.nome}</h2>
-                </div>
+        <div className={styles.informacoes}>
+          <div className={styles.tituloP}>
+            <h2>{item.produto.nome}</h2>
+          </div>
 
-                <div className={styles.precoOriginal}>
-                  <p>R${item.produto.preco_ant}</p>
-                  <Image className={styles.traco} src={Traco} alt="traço" />
-                </div>
+          <div className={styles.precoOriginal}>
+            <p>R${item.produto.preco_ant}</p>
+            <Image className={styles.traco} src={Traco} alt="traço" />
+          </div>
 
-                <div className={styles.desconto}>
-                  <h1>R${item.produto.preco_atual}</h1>
-                </div>
+          <div className={styles.desconto}>
+            <h1>R${item.produto.preco_atual}</h1>
+          </div>
 
-                <div className={styles.parcela}>
-                  <p>ou 3x de R${(item.produto.preco_atual / 3).toFixed(2)}</p>
-                </div>
-              </div>
-
-              <div className={styles.total}>
-                <div className={styles.quantidade}>
-                  <button
-                    type="button"
-                    className={styles.botaoDiminuir}
-                    onClick={() => diminuirQuant(item)}
-                  >-</button>
-                  <div className={styles.quantProd}>
-                    <p>{item.quantidade}</p>
-                  </div>
-
-                  
-                  <button
-                    type="button"
-                    className={styles.botaoAumentar}
-                    onClick={() => aumentarQuant(item)}
-                  >+</button>
-                </div>
-
-                <div className={styles.valorTotal}>
-                  <h2>Subtotal</h2>
-                  <div className={styles.caixinha}>
-                    <p>R${(item.produto.preco_atual * item.quantidade).toFixed(2)}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles.lixeira}>
-                <button
-                  type="button"
-                  onClick={() => deletarItem(item.product)}
-                  className={styles.botaoDelete}
-                >
-                  <Image className={styles.lixo} src={Lixeira} alt="lixo" />
-                </button>
-              </div>
-            </div>
-          ))}
+          <div className={styles.parcela}>
+            <p>ou 3x de R${(item.produto.preco_atual / 3).toFixed(2)}</p>
+          </div>
         </div>
+
+        <div className={styles.total}>
+          <div className={styles.quantidade}>
+            <button
+              type="button"
+              className={styles.botaoDiminuir}
+              onClick={() => diminuirQuant(item)}
+            >-</button>
+            <div className={styles.quantProd}>
+              <p>{item.quantidade}</p>
+            </div>
+
+            
+            <button
+              type="button"
+              className={styles.botaoAumentar}
+              onClick={() => aumentarQuant(item)}
+            >+</button>
+          </div>
+
+          <div className={styles.valorTotal}>
+            <h2>Subtotal</h2>
+            <div className={styles.caixinha}>
+              <p>R${(item.produto.preco_atual * item.quantidade).toFixed(2)}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.lixeira}>
+          <button
+            type="button"
+            onClick={() => deletarItem(item.product)}
+            className={styles.botaoDelete}
+          >
+            <Image className={styles.lixo} src={Lixeira} alt="lixo" />
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
 
         {/* Renderização condicional da div 'calculo' */}
         {itens.length > 0 && (
@@ -243,6 +244,5 @@ export default function CarrinhoCheio({ item }: CarrinhoCheioProps) {
           </div>
         )}
       </div>
-    </div>
   );
 }

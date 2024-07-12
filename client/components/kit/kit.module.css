@@ -39,6 +39,7 @@
     
     .elemento{
         margin-top: -15px;
+        gap:70px;
     }
 }
 
@@ -59,6 +60,7 @@
 
     .elemento{
         margin-top: -18px;
+        gap:30px;
     }
 
 }
