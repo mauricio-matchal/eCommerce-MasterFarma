@@ -1,17 +1,17 @@
-.maisVendidos{
+.maisVendidos {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.titulo{
+.titulo {
     font-weight: bold;
-    font-size:24px;
-    color: #053947; 
+    font-size: 24px;
+    color: #053947;
 }
 
-.produto{
+.produto {
     display: flex;
     flex-direction: row;
     background-color: #00A2B9;
@@ -20,65 +20,59 @@
     padding: 15px;
     border-radius: 30px;
     margin-bottom: 40px;
-    gap:15px;
-    
+    gap: 15px;
 }
 
-.precoOriginal p{
+.precoOriginal p {
+    margin-top: -5px;
     margin-bottom: -15px;
     color: #EBFFFE;
     font-weight: bold;
-   
 }
 
-.desconto h1{
-    font-size:45px;
+.desconto h1 {
+    font-size: 45px;
     font-weight: bold;
     color: #053947;
     margin-top: -10px;
 }
 
-.parcela{
+.parcela {
     color: #EBFFFE;
-    margin-top: -10px;
+    margin-top: -20px;
 }
 
 .traco {
     justify-content: center;
     align-items: center;
-    transform: translate(-50%, -50%) rotate(180deg); 
-    width: 50%; 
+    transform: translate(-50%, -50%) rotate(180deg);
+    width: 50%;
     height: 20px;
     margin-left: 30px;
     margin-top: 5px;
 }
 
-.tituloP{
-    display: grid;
-    width: 200px; 
+
+h2.tit {
+    color: #EBFFFE;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
-    
-}
-
-.tituloP h2{
-    color:#EBFFFE;
+    height: 3.5rem;
+    width: 250px;
 }
 
 .componente {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    
 }
 
-.imagem{
+.imagem {
     width: 200px;
     height: 200px;
 }
 
-.link{
+.link {
     text-decoration: none;
 }
 
@@ -87,7 +81,7 @@
 }
 
 @media (max-width: 768px) {
-    .titulo h1{
+    .titulo h1 {
         font-size: 45px;
         text-align: center;
     }
@@ -106,37 +100,38 @@
 }
 
 @media (max-width: 468px) {
-    .titulo h1{
+    .titulo h1 {
         font-size: 35px;
         text-align: center;
     }
 
-    .tituloP h2{
-        font-size: 15px;
+    .produto {
+        width: 330px;
+        height: 210px;
     }
 
     .imagem{
-        width: 130px;
-        height: 130px;
-        margin-left: 50px;
+        width: 150px;
+        height: 150px;
     }
 
-    .desconto h1{
-        font-size: 25px;
+    .tituloP {
+        max-width: 150px; /* Ajuste o valor conforme necessário */
+        overflow-wrap: break-word;
+      }
+      
 
+    h2.tit {
+        color: #EBFFFE;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 5.5rem;
+        width: 150px;
     }
 
-    .produto{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 300px;
-        height: 180px;
-        
-    }
-
-    .componente{
-        margin-left: 6ch;
+    .desconto h1 {
+        font-size: 30px;
+       
     }
 
 }

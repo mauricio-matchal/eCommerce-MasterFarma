@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import style from "./vendidos.module.css";
 import Image from "next/image";
@@ -7,6 +7,7 @@ import Traco from "../../public/traco.svg";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
+
 interface VendidosProps {
   tituloSecao: string;
 }
@@ -46,6 +47,10 @@ export default function Vendidos({ tituloSecao }: VendidosProps) {
     return () => clearInterval(interval);
   }, []);
 
+  function formatFloatWithComma(number: number) {
+    return number.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
   return (
     <div className={style.maisVendidos}>
       <div className={style.titulo}>
@@ -58,20 +63,20 @@ export default function Vendidos({ tituloSecao }: VendidosProps) {
             <Image className={style.imagem} src={ProdutoImage} alt="Produto" />
 
             <div className={style.informacoes}>
-              <div className={style.tituloP}>
-                <Link className={style.link} href="/produto/product-page">
-                  <h2 className={style.tit}>{item.nome}</h2>
-                </Link>
-              </div>
+            <div className={style.tituloP}>
+              <Link className={style.link} href="/produto/product-page">
+                <h2 className={style.tit}>{item.nome}</h2>
+              </Link>
+            </div>
               <div className={style.precoOriginal}>
-                <p>R${item.preco_ant.toFixed(2)}</p>
+                <p>R$R${formatFloatWithComma(item.preco_ant)}</p>
                 <Image className={style.traco} src={Traco} alt="Traço" />
               </div>
               <div className={style.desconto}>
-                <h1>R${item.preco_atual.toFixed(2)}</h1>
+                <h1>R$R${formatFloatWithComma(item.preco_atual)}</h1>
               </div>
               <div className={style.parcela}>
-                <p>ou 3x de {(item.preco_atual / 3).toFixed(2)}</p>
+                <p>ou 3x de {formatFloatWithComma(item.preco_atual/3)}</p>
               </div>
             </div>
           </div>

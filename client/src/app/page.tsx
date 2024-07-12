@@ -53,8 +53,7 @@ export default async function Home() {
     <Marcas/>
     <Kit/>
     <Vendidos tituloSecao="Mais vendidos"/>
-    <Produto/>
-    <ProductManagePage/>
+  
     </>
   );
 }
