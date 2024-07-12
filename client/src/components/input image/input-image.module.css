@@ -24,3 +24,16 @@
 .input:hover {
   cursor: pointer;
 }
+
+.imagePreview {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 88%;
+  height: 88%;
+  transform-origin: center;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  object-fit: cover;
+  pointer-events: none;
+}

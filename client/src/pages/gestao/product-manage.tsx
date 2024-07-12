@@ -59,6 +59,7 @@ export function ProductManagePage() {
 
   async function handleSubmit() {
     //função de criar produto
+    console.log(formData);
     try {
       const response = await axios.post(
         "http://localhost:3000/produtos",
@@ -116,6 +117,14 @@ export function ProductManagePage() {
     }
   }
 
+  // essa função permite que o campo de preços apenas aceite numeros e nao letras
+  function handleKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode !== 46 && (charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+    }
+  }
+
   return (
     <div className={style.container}>
       <h1 className={style.title}>Gestão dos produtos</h1>
@@ -157,11 +166,14 @@ export function ProductManagePage() {
                     </label>
                     <input
                       type="text"
-                      id="precoAntigo"
+                      id="preco_ant"
                       placeholder="R$0,00"
                       value={formData.preco_ant}
                       onChange={handleInputChange}
                       className={style.textinput}
+                      onKeyPress={handleKeyPress}
+                      inputMode="numeric"
+                      pattern="[0-9.]*"
                     />
                   </div>
                   <div>
@@ -170,11 +182,14 @@ export function ProductManagePage() {
                     </label>
                     <input
                       type="text"
-                      id="precoAtual"
+                      id="preco_atual"
                       placeholder="R$0,00"
                       value={formData.preco_atual}
                       onChange={handleInputChange}
                       className={style.textinput}
+                      onKeyPress={handleKeyPress}
+                      inputMode="numeric"
+                      pattern="[0-9.]*"
                     />
                   </div>
                   <div>
@@ -188,6 +203,10 @@ export function ProductManagePage() {
                       value={formData.codigo}
                       onChange={handleInputChange}
                       className={style.textinput}
+                      maxLength={8}
+                      onKeyPress={handleKeyPress}
+                      inputMode="numeric"
+                      pattern="[0-9]*"
                     />
                   </div>
                 </div>
@@ -201,7 +220,7 @@ export function ProductManagePage() {
                     <input
                       type="radio"
                       name="categoria"
-                      id="meds"
+                      id="categoria"
                       value="Medicamentos"
                       checked={formData.categoria === "Medicamentos"}
                       onChange={handleInputChange}
@@ -216,7 +235,7 @@ export function ProductManagePage() {
                     <input
                       type="radio"
                       name="categoria"
-                      id="suplementos"
+                      id="categoria"
                       value="Suplementos"
                       checked={formData.categoria === "Suplementos"}
                       onChange={handleInputChange}
@@ -228,7 +247,7 @@ export function ProductManagePage() {
                     <input
                       type="radio"
                       name="categoria"
-                      id="higiene"
+                      id="categoria"
                       value="Higiene"
                       checked={formData.categoria === "Higiene"}
                       onChange={handleInputChange}
@@ -242,7 +261,7 @@ export function ProductManagePage() {
                     <input
                       type="radio"
                       name="categoria"
-                      id="beleza"
+                      id="categoria"
                       value="Beleza"
                       checked={formData.categoria === "Beleza"}
                       onChange={handleInputChange}
@@ -254,7 +273,7 @@ export function ProductManagePage() {
                     <input
                       type="radio"
                       name="categoria"
-                      id="bebes"
+                      id="categoria"
                       value="Bebês"
                       checked={formData.categoria === "Bebês"}
                       onChange={handleInputChange}
@@ -266,7 +285,7 @@ export function ProductManagePage() {
                     <input
                       type="radio"
                       name="categoria"
-                      id="perfumaria"
+                      id="categoria"
                       value="Perfumaria"
                       checked={formData.categoria === "Perfumaria"}
                       onChange={handleInputChange}

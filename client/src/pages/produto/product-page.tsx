@@ -14,7 +14,6 @@ export default function ProductPage() {
   //modificar essa pagina para que o produto seja o que está no banco de dados
   return (
     <>
-    <Cabecalho/>
       <div className={style.container}>
         <ProductInfoDisplay
           image={CarmedProduct}
@@ -73,7 +72,7 @@ export default function ProductPage() {
           />
         </section>
       </div>
-      <Rodape/>
-  </>
+      <Rodape />
+    </>
   );
 }
