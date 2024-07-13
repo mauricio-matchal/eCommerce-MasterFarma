@@ -6,7 +6,7 @@ import style from "@/components/product info display/product-info-display.module
 interface ProductInfoDisplayProps {
   image: StaticImageData;
   title: string;
-  oldPrice?: number;
+  oldPrice: number;
   price: number;
   installment: number;
   code: number;
@@ -30,6 +30,10 @@ export function ProductInfoDisplay({
       alert("Erro ao adicionar ao carrinho.");
     }
   };
+
+  function formatFloatWithComma(number: number) {
+    return number.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
 
   return (
     <div className={style.container}>
@@ -85,10 +89,10 @@ export function ProductInfoDisplay({
           <div>
             <div className={style.oldprice}>
               <div className={style.slash}></div>
-              <h3 className={style.oldprice}>R${oldPrice}</h3>
+              <h3 className={style.oldprice}>R${formatFloatWithComma(oldPrice)}</h3>
             </div>
-            <h1 className={style.price}>R${price}</h1>
-            <p className={style.parcelas}>Ou 3x de {installment}</p>
+            <h1 className={style.price}>R${formatFloatWithComma(price)}</h1>
+            <p className={style.parcelas}>Ou 3x de R${formatFloatWithComma(installment)}</p>
           </div>
           <button className={style.addtocart} onClick={handleAddToCart}>
             <div className={style.addtocart}>

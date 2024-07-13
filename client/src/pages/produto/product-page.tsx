@@ -9,70 +9,100 @@ import { ProductInfoDisplay } from "@/components/product info display/product-in
 import { Footer } from "@/components/footer";
 import Cabecalho from "../../../components/cabecalho/cabecalho";
 import Rodape from "../../../components/rodape/rodape";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-export default function ProductPage() {
+type Produto = {
+  codigo: number;
+  nome: string;
+  preco_ant: number;
+  preco_atual: number;
+  categoria: string;
+  // image: StaticImageData;
+};
+interface ProductPageProps {
+  title: string;
+  oldPrice: number;
+  price: number;
+  installment: number;
+  code: number;
+}
+
+export default function ProductPage({
+  title,
+  oldPrice,
+  price,
+  installment,
+  code
+}: ProductPageProps) {
+  
+  const [filteredProducts, setFilteredProducts] = useState<Produto[]>([]); //adiçao desse useState
+  const [produtos, setProdutos] = useState<Produto[]>([]); //adição dessa linha
+
+  useEffect(() => {
+    fetchProdutos();
+  }, []);
+
+  async function fetchProdutos() {
+    //função de buscar todos os produtos
+    try {
+      const response = await axios.get<Produto[]>(
+        "http://localhost:3000/produtos"
+      ); //modificação dessa linha
+      setProdutos(response.data);
+      setFilteredProducts(response.data); //adiçao do setFiltered
+    } catch (error) {
+      console.error("Erro ao buscar produtos:", error);
+    }
+  }
   //modificar essa pagina para que o produto seja o que está no banco de dados
   return (
     <>
       <div className={style.container}>
         <ProductInfoDisplay
           image={CarmedProduct}
-          title={"Hidratante Labial Carmed Barbie 65 Pink 10g"}
-          oldPrice={49.99}
-          price={29.99}
-          installment={9.99}
-          code={40028922}
+          title={title}
+          oldPrice={oldPrice}
+          price={price}
+          installment={installment}
+          code={code}
         />
         <h1>Itens semelhantes</h1>
         <section>
-          <ProductCardP
-            image={CarmedProduct}
-            title={"Hidratante Labial Carmed Barbie 65 Pink 10g"}
-            oldPrice={49.99}
-            price={29.99}
-            installment={9.99}
-          />
-          <ProductCardP
-            image={CarmedProduct}
-            title={"Hidratante Labial Carmed Barbie 65 Pink 10g"}
-            oldPrice={49.99}
-            price={29.99}
-            installment={9.99}
-          />
-          <ProductCardP
-            image={CarmedProduct}
-            title={"Hidratante Labial Carmed Barbie 65 Pink 10g"}
-            oldPrice={49.99}
-            price={29.99}
-            installment={9.99}
-          />
-          <ProductCardP
-            image={CarmedProduct}
-            title={"Hidratante Labial Carmed Barbie 65 Pink 10g"}
-            oldPrice={49.99}
-            price={29.99}
-            installment={9.99}
-          />
+        {produtos.length > 0 ? (
+          produtos.slice(0, 4).map((product) => (
+            <ProductCardP
+              key={product.codigo}
+              image={CarmedProduct} // Adjust according to your image attribute
+              title={product.nome}
+              oldPrice={product.preco_ant}
+              price={product.preco_atual}
+              installment={Math.ceil((product.preco_atual / 3) * 100) / 100} // Example calculation for installment
+              editable={false}
+            />
+          ))
+        ) : (
+          <p>No products available.</p>
+        )}
         </section>
         <h1>Outros Produtos</h1>
         <section>
-          <ProductCardL
-            image={CarmedProduct}
-            title={"Hidratante Labial Carmed Barbie 65 Pink 10g"}
-            oldPrice={49.99}
-            price={29.99}
-            installment={9.99}
-          />
-          <ProductCardL
-            image={CarmedProduct}
-            title={"Hidratante Labial Carmed Barbie 65 Pink 10g"}
-            oldPrice={49.99}
-            price={29.99}
-            installment={9.99}
-          />
+        {produtos.length > 0 ? (
+          produtos.slice(0, 2).map((product) => (
+            <ProductCardL
+              key={product.codigo}
+              image={CarmedProduct} // Adjust according to your image attribute
+              title={product.nome}
+              oldPrice={product.preco_ant}
+              price={product.preco_atual}
+              installment={Math.ceil((product.preco_atual / 3) * 100) / 100} // Example calculation for installment
+            />
+          ))
+        ) : (
+          <p>No products available.</p>
+        )}
         </section>
       </div>
-      <Rodape />
     </>
   );
 }
