@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import style from "./ofertas.module.css";
 import Image from "next/image";
 import Hidratante from "../../public/hidratante.svg";
@@ -47,6 +47,9 @@ export default function Ofertas({ tituloSecao }: OfertasProps) {
     return () => clearInterval(interval);
   }, []);
 
+  function formatFloatWithComma(number: number) {
+    return number.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
   return (
     <div className={style.ofertas}>
       <div className={style.titOferta}>
@@ -58,22 +61,23 @@ export default function Ofertas({ tituloSecao }: OfertasProps) {
           <div key={item.codigo} className={style.produto}>
             <Image className={style.imagem} src={Hidratante} alt="hidratante" />
             <div className={style.titulo}>
-              {/* Correção no uso do Link */}
-              <Link  className={style.link} href="/produto/product-page">
-                
+              <Link className={style.link} href="/produto/product-page">
                 <h2 className={style.tit}>{item.nome}</h2>
-            
               </Link>
             </div>
             <div className={style.precoOriginal}>
-              <p>R${item.preco_ant?.toFixed(2)}</p>
-              <Image className={style.traco} src={Traco} alt="traço" />
+              {item.preco_ant && (
+                <>
+                  <p>R${formatFloatWithComma(item.preco_ant)}</p>
+                  <Image className={style.traco} src={Traco} alt="traço" />
+                </>
+              )}
             </div>
             <div className={style.desconto}>
-              <h1>R${item.preco_atual.toFixed(2)}</h1>
+              <h1>R${formatFloatWithComma(item.preco_atual)}</h1>
             </div>
             <div className={style.parcela}>
-              <p>ou 3x de {(item.preco_atual / 3).toFixed(2)}</p>
+              <p>ou 3x de {formatFloatWithComma(item.preco_atual/3)}</p>
             </div>
           </div>
         ))}
