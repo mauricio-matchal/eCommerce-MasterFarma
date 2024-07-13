@@ -22,5 +22,28 @@ h3.title {
 }
 
 input.checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
   margin-right: 8px;
+  font: inherit;
+  background-color: var(--950);
+  color: var(--600);
+  width: 0.75em;
+  height: 0.75em;
+  border: 0.14em solid var(--600);
+  border-radius: 25%;
+}
+
+input.checkbox:checked {
+  content: "";
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: 25%;
+  background-color: var(--600);
+  transform: scale(-1);
+  transition: 150ms transform ease-in-out;
+  border: 0.14em solid rgba(255, 255, 255, 0.4);
+  box-shadow: inset 1em 1em var(--form-control-color);
 }

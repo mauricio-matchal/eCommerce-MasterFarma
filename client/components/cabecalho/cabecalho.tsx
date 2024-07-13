@@ -1,7 +1,8 @@
 'use client'
 
 import Image from 'next/image';
-import { useState, ChangeEvent, FormEvent } from 'react';
+import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import CarmedProduct from "@/assets/carmed-product.png";
 import Logo from "../../public/Logo.svg";
 import Lupa from "../../public/lupa.svg";
 import Login from "../../public/login.svg";
@@ -10,11 +11,23 @@ import Link from 'next/link';
 import styles from "./cabecalho.module.css";
 import axios from 'axios';
 import { useRouter } from 'next/navigation'; //hook que usado na linha 18 e na função ir para o carrinho
+import { Filter } from '@/components/filter/filter';
+import { ProductCardP } from '@/components/product card portrait/product-card-portrait';
 
+type Produto = {
+    codigo: number;
+    nome: string;
+    preco_ant: number;
+    preco_atual: number;
+    categoria: string;
+    // image: StaticImageData;
+  };
 
 export default function Cabecalho() {
     const [pesquisa, setPesquisa] = useState('');
-    const [resultados, setResultados] = useState([]);
+    const [resultados, setResultados] = useState<Produto[]>([]);
+    const [filteredProducts, setFilteredProducts] = useState<Produto[]>([]); //adiçao desse useState
+    
     const router = useRouter();
 
     const barraPesquisa = (event: ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +40,7 @@ export default function Cabecalho() {
         try {
             const response = await axios.get(`http://localhost:3000/produtos/nome/${pesquisa}`);
             setResultados(response.data.produtos || []);
+            setFilteredProducts(response.data); //adiçao do setFiltered
         } catch (error) {
             console.error('Erro ao buscar produtos:', error);
         }
@@ -37,6 +51,7 @@ export default function Cabecalho() {
     };
 
     return (
+        <> 
         <div className={styles.cabecalho}>
             <div className={styles.topo}>
                 <Link className={styles.txt} href='/'>
@@ -78,5 +93,30 @@ export default function Cabecalho() {
                 </form>
             </div>
         </div>
+        {pesquisa ? (
+            <div className={styles.paginaPesquisa}>
+                <h1>Exibindo resultados para: {pesquisa}</h1>
+                <main className={styles.grid}>
+                    <Filter setFilteredProducts={setFilteredProducts} /> {/* modificação */}
+                    {filteredProducts.length > 0 ? (
+                        <p>No products available.</p>
+                        // filteredProducts.map((product) => (
+                        //     <ProductCardP
+                        //     key={product.codigo}
+                        //     image={CarmedProduct} // Adjust according to your image attribute
+                        //     title={product.nome}
+                        //     oldPrice={product.preco_ant}
+                        //     price={product.preco_atual}
+                        //     installment={Math.ceil((product.preco_atual / 3) * 100) / 100} // Example calculation for installment
+                        //     // discutir como vai funcionar essa parte
+                        //     />
+                        // ))
+                    ) : (
+                        <p>No products available.</p>
+                    )}
+                </main>
+            </div>
+        ) : ""}
+        </>
     );
 }
