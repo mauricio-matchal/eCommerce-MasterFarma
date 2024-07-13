@@ -22,6 +22,7 @@ type Produto = {
 export function ProductManagePage() {
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState<Produto[]>([]); //adiçao desse useState
+  const [editModalIsVisible, setEditModalIsVisible] = useState(false);
   const [formData, setFormData] = useState({
     nome: "",
     preco_ant: "",
@@ -29,8 +30,16 @@ export function ProductManagePage() {
     codigo: "",
     categoria: "",
   });
+  // const [editFormData, setEditFormData] = useState({
+  //   nome: "",
+  //   preco_ant: "",
+  //   preco_atual: "",
+  //   categoria: "",
+  // });
 
   const [produtos, setProdutos] = useState<Produto[]>([]); //adição dessa linha
+  const [isEditing, setIsEditing] = useState(false);
+  const [editCodigo, setEditCodigo] = useState<number | null>(null);
 
   useEffect(() => {
     fetchProdutos();
@@ -58,15 +67,16 @@ export function ProductManagePage() {
   }
 
   async function handleSubmit() {
-    //função de criar produto
     console.log(formData);
     try {
-      const response = await axios.post(
-        "http://localhost:3000/produtos",
-        formData
-      );
+      const response = await axios.post("http://localhost:3000/produtos", {
+        nome: formData.nome,
+        preco_ant: formData.preco_ant,
+        preco_atual: formData.preco_atual,
+        codigo: formData.codigo,
+        categoria: formData.categoria,
+      });
       console.log(response.data);
-      // Limpar o formulário após o envio bem-sucedido
       setFormData({
         nome: "",
         preco_ant: "",
@@ -74,8 +84,8 @@ export function ProductManagePage() {
         codigo: "",
         categoria: "",
       });
-      // Ocultar o formulário de criação
       setModalIsVisible(false);
+      fetchProdutos();
     } catch (error) {
       console.error("Erro ao criar produto:", error);
     }
@@ -84,7 +94,6 @@ export function ProductManagePage() {
   function toggleCreateVisibility() {
     setModalIsVisible(!modalIsVisible);
   }
-
   function manageCancel() {
     //quando a pessoa cancela o form é apagado
     setFormData({
@@ -95,8 +104,11 @@ export function ProductManagePage() {
       categoria: "",
     });
     toggleCreateVisibility();
+    setModalIsVisible(false);
+    setEditModalIsVisible(false);
+    setIsEditing(false);
+    setEditCodigo(null);
   }
-
   async function manageDelete(codigo: number) {
     //vai precisar modificar essa propriedade no card portrait
     try {
@@ -107,31 +119,62 @@ export function ProductManagePage() {
     }
   }
 
-  async function manageEdit(codigo: number, updatedData: Partial<Produto>) {
+  async function handleEditSubmit() {
     //vai precisar modificar essa propriedade no card protrait
+    console.log(formData);
+    console.log(editCodigo);
+    // console.log(editFormData);
     try {
-      await axios.put(`http://localhost:3000/produtos/${codigo}`, updatedData);
+      const response = await axios.put(
+        `http://localhost:3000/produtos/${editCodigo}`,
+        {
+          nome: formData.nome,
+          preco_ant: formData.preco_ant,
+          preco_atual: formData.preco_atual,
+          categoria: formData.categoria,
+        }
+      );
+      console.log(response);
+      setEditModalIsVisible(false);
       fetchProdutos();
     } catch (error) {
       console.error("Erro ao editar produto:", error);
     }
   }
 
-  // essa função permite que o campo de preços apenas aceite numeros e nao letras
-  function handleKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
-    const charCode = event.which ? event.which : event.keyCode;
-    if (charCode !== 46 && (charCode < 48 || charCode > 57)) {
-      event.preventDefault();
-    }
+  function handleEdit(product: Produto) {
+    setFormData({
+      nome: product.nome,
+      preco_ant: product.preco_ant.toString(),
+      preco_atual: product.preco_atual.toString(),
+      codigo: product.codigo.toString(),
+      categoria: product.categoria,
+    });
+    // const { codigo, ...newEditFormData } = formData;
+    // setEditFormData(newEditFormData);
+
+    setEditCodigo(product.codigo);
+    setIsEditing(true);
+    setEditModalIsVisible(true);
   }
+
+  // essa função permite que o campo de preços apenas aceite numeros e nao letras
+  // event: React.KeyboardEvent<HTMLInputElement>) {
+  //   const charCode = event.which ? event.which : event.keyCode;
+  //   if (charCode !== 46 && (charCode < 48 || charCode > 57)) {
+  //     event.preventDefault();
+  //   }
+  // }
 
   return (
     <div className={style.container}>
       <h1 className={style.title}>Gestão dos produtos</h1>
-      {modalIsVisible ? (
+      {editModalIsVisible || modalIsVisible ? (
         <div className={style.modalcontainer}>
           <div className={style.center}>
-            <h2 className={style.title}>Criar Produto</h2>
+            <h2 className={style.title}>
+              {isEditing ? "Editar Produto" : "Criar Produto"}
+            </h2>
 
             {/* Inputs pequeno e grande */}
             <div className={style.layout}>
@@ -171,7 +214,6 @@ export function ProductManagePage() {
                       value={formData.preco_ant}
                       onChange={handleInputChange}
                       className={style.textinput}
-                      onKeyPress={handleKeyPress}
                       inputMode="numeric"
                       pattern="[0-9.]*"
                     />
@@ -187,28 +229,30 @@ export function ProductManagePage() {
                       value={formData.preco_atual}
                       onChange={handleInputChange}
                       className={style.textinput}
-                      onKeyPress={handleKeyPress}
                       inputMode="numeric"
                       pattern="[0-9.]*"
                     />
                   </div>
-                  <div>
-                    <label className={style.label} htmlFor="codigo">
-                      Código
-                    </label>
-                    <input
-                      type="text"
-                      id="codigo"
-                      placeholder="00000000"
-                      value={formData.codigo}
-                      onChange={handleInputChange}
-                      className={style.textinput}
-                      maxLength={8}
-                      onKeyPress={handleKeyPress}
-                      inputMode="numeric"
-                      pattern="[0-9]*"
-                    />
-                  </div>
+                  {editModalIsVisible ? (
+                    <></>
+                  ) : (
+                    <div>
+                      <label className={style.label} htmlFor="codigo">
+                        Código
+                      </label>
+                      <input
+                        type="text"
+                        id="codigo"
+                        placeholder="00000000"
+                        value={formData.codigo}
+                        onChange={handleInputChange}
+                        className={style.textinput}
+                        maxLength={8}
+                        inputMode="numeric"
+                        pattern="[0-9]*"
+                      />
+                    </div>
+                  )}
                 </div>
 
                 {/* Categorias */}
@@ -302,9 +346,15 @@ export function ProductManagePage() {
                   <button onClick={manageCancel} className={style.cancel}>
                     Cancelar
                   </button>
-                  <button onClick={handleSubmit} className={style.submit}>
-                    Confirmar
-                  </button>
+                  {editModalIsVisible ? (
+                    <button onClick={handleEditSubmit} className={style.submit}>
+                      Confirmar
+                    </button>
+                  ) : (
+                    <button onClick={handleSubmit} className={style.submit}>
+                      Confirmar
+                    </button>
+                  )}
                 </div>
               </section>
             </div>
@@ -334,7 +384,7 @@ export function ProductManagePage() {
               installment={Math.ceil((product.preco_atual / 3) * 100) / 100} // Example calculation for installment
               editable={true}
               manageDelete={() => manageDelete(product.codigo)}
-              // manageEdit={() => manageEdit(product.codigo)}
+              manageEdit={() => handleEdit(product)}
               // discutir como vai funcionar essa parte
             />
           ))

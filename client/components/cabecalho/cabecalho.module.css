@@ -1,3 +1,29 @@
+.paginaPesquisa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--50);
+    z-index: 10;
+    position: absolute;
+}
+
+.paginaPesquisa > h1 {
+    margin: 0px;
+    padding: 0px;
+    margin-top: 72px;
+    color: var(--950);
+}
+
+.grid {
+    display: grid;
+    margin-top: 1.5rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 72px;
+  }
+
 .cabecalho {
     display: flex;
     flex-direction: column;

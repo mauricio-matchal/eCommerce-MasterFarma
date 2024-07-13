@@ -1,6 +1,6 @@
 /*Tem que fazer outro filtro para a página de resultados que vai usar as rotas de buscar por nome e categoria e 
 e buscar por nome e preço ou só a rota de buscar por nome, categoria e preço (acho que dá para reaproveitar essa e adpatar, mas vcs que sabem)*/
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import style from "@/components/filter/filter.module.css";
 
@@ -19,51 +19,31 @@ type FilterProps = {
 
 export function Filter({ setFilteredProducts }: FilterProps) {
   const [category, setCategory] = useState<string>("");
-  const [priceRange, setPriceRange] = useState<string>("");
+  const [price, setPrice] = useState<string>("");
 
-  /* configuração anterior para caso a atual fique complicada para implementar 
-  //função de para filtrar por categoria integrando com o banco de dados
-  const handleCategoryChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedCategory = event.target.name;
-    setCategory(selectedCategory);
+  useEffect(() => {
+    handleFilterChange();
+  }, [category, price]);
 
-    try {
-      const response = await axios.get<Produto[]>(
-        `http://localhost:3000/produtos/categoria/${selectedCategory}`
-      );
-      setFilteredProducts(response.data);
-    } catch (error) {
-      console.error("Erro ao buscar produtos pela categoria:", error);
-    }
-  };
-
-  //função para filtrar por preço integrando com o banco de dados
-  const handlePriceChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedPrice = event.target.id;
-    setPriceRange(selectedPrice);
-
-    try {
-      const response = await axios.get<Produto[]>(
-        `http://localhost:3000/produtos/preco/${selectedPrice}`
-      );
-      setFilteredProducts(response.data);
-    } catch (error) {
-      console.error("Erro ao buscar produtos pelo preço:", error);
-    }
-  };
-*/
-
-  // Função para filtrar produtos por categoria e preço
   const handleFilterChange = async () => {
     const params: any = {};
     if (category) params.categoria = category;
-    if (priceRange) params.intervalo = priceRange;
+    if (price) params.intervalo = price;
+
+    let url = `http://localhost:3000/produtos/categoria-preco/`;
+    const queryParams: string[] = [];
+
+    if (category) queryParams.push(`categoria=${params.categoria}`);
+    if (price) queryParams.push(`intervalo=${params.intervalo}`);
+
+    if (queryParams.length > 0) {
+      url += `?${queryParams.join("&")}`;
+    }
+
+    console.log(url);
 
     try {
-      const response = await axios.get<Produto[]>(
-        `http://localhost:3000/produtos/categoria-preco`,
-        { params }
-      );
+      const response = await axios.get<Produto[]>(url);
       setFilteredProducts(response.data);
     } catch (error) {
       console.error("Erro ao buscar produtos pela categoria e preço:", error);
@@ -71,15 +51,11 @@ export function Filter({ setFilteredProducts }: FilterProps) {
   };
 
   const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedCategory = event.target.name;
-    setCategory(selectedCategory);
-    handleFilterChange();
+    setCategory(event.target.id);
   };
 
   const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedPrice = event.target.id;
-    setPriceRange(selectedPrice);
-    handleFilterChange();
+    setPrice(event.target.id);
   };
 
   return (
@@ -91,7 +67,7 @@ export function Filter({ setFilteredProducts }: FilterProps) {
             type="radio"
             className={style.checkbox}
             name="categoria"
-            id="medicamentos"
+            id="Medicamentos"
             onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
           <label htmlFor="checkbox">Medicamentos</label>
@@ -101,7 +77,7 @@ export function Filter({ setFilteredProducts }: FilterProps) {
             type="radio"
             className={style.checkbox}
             name="categoria"
-            id="suplementos"
+            id="Suplementos"
             onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
           <label htmlFor="suplementos">Suplementos</label>
@@ -112,7 +88,7 @@ export function Filter({ setFilteredProducts }: FilterProps) {
             type="radio"
             className={style.checkbox}
             name="categoria"
-            id="higiene"
+            id="Higiene"
             onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
           <label htmlFor="higiene">Higiene</label>
@@ -123,7 +99,7 @@ export function Filter({ setFilteredProducts }: FilterProps) {
             type="radio"
             className={style.checkbox}
             name="categoria"
-            id="beleza"
+            id="Beleza"
             onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
           <label htmlFor="beleza">Beleza</label>
@@ -134,7 +110,7 @@ export function Filter({ setFilteredProducts }: FilterProps) {
             type="radio"
             className={style.checkbox}
             name="categoria"
-            id="bebes"
+            id="Bebes"
             onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
           <label htmlFor="bebes">Bebês</label>
@@ -145,7 +121,7 @@ export function Filter({ setFilteredProducts }: FilterProps) {
             type="radio"
             className={style.checkbox}
             name="categoria"
-            id="perfumaria"
+            id="Perfumaria"
             onChange={handleCategoryChange} // chama a função de filtrar por categoria
           />
           <label htmlFor="perfumaria">Perfumaria</label>
