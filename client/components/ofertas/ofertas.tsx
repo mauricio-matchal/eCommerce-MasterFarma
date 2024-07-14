@@ -57,7 +57,7 @@ export default function Ofertas({ tituloSecao }: OfertasProps) {
       </div>
 
       <div className={style.componente}>
-        {itens.map((item) => (
+        {itens.slice(0, 4).map((item) => (
           <div key={item.codigo} className={style.produto}>
             <Image className={style.imagem} src={Hidratante} alt="hidratante" />
             <div className={style.titulo}>
