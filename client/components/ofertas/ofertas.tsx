@@ -61,7 +61,7 @@ export default function Ofertas({ tituloSecao }: OfertasProps) {
           <div key={item.codigo} className={style.produto}>
             <Image className={style.imagem} src={Hidratante} alt="hidratante" />
             <div className={style.titulo}>
-              <Link className={style.link} href="/produto/product-page">
+              <Link className={style.link} href="/produto">
                 <h2 className={style.tit}>{item.nome}</h2>
               </Link>
             </div>
