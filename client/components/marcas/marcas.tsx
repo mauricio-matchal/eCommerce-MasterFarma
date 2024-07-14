@@ -1,6 +1,6 @@
 import style from "./marcas.module.css";
 import Image from "next/image";
-import Marca from "../../../public/marca.svg";
+import Marca from "../../public/marca.svg";
 
 export default function Marcas(){
     return(
