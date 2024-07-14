@@ -72,7 +72,7 @@ export default function ProductPage() {
           />
         </section>
       </div>
-      <Rodape />
+      
     </>
   );
 }

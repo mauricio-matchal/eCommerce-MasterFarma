@@ -64,7 +64,9 @@ export default function Cabecalho() {
                 <div className={styles.components}>
                     <div className={styles.login}>
                         <Image className={styles.imgLogin} src={Login} alt="Login" priority />
-                        <button type="submit" className={styles.botaoLogin}>Entrar</button>
+                        <Link className={styles.link} href="/gestao">
+                            <button type="submit" className={styles.botaoLogin}>Entrar</button>
+                        </Link>
                     </div>
                     
                     <Link className={styles.txt} href='/carrinho'>
