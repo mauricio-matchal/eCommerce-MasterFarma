@@ -58,7 +58,7 @@ export default function Vendidos({ tituloSecao }: VendidosProps) {
       </div>
 
       <div className={style.componente}>
-        {itens.map((item) => (
+        {itens.slice(0, 8).map((item) => (
           <div key={item.codigo} className={style.produto}>
             <Image className={style.imagem} src={ProdutoImage} alt="Produto" />
 

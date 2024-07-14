@@ -389,7 +389,7 @@ export function ProductManagePage() {
             />
           ))
         ) : (
-          <p>No products available.</p>
+          <p>Não encontramos produtos disponíveis.</p>
         )}
       </main>
     </div>
