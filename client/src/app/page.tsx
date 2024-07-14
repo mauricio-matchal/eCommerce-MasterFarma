@@ -6,7 +6,7 @@ import style from "./page.module.css";
 import Rolagem from "../../components/indicadorNav/rolagem";
 import Secoes from "../../components/secoes/secoes";
 import Ofertas from "../../components/ofertas/ofertas";
-import Marcas from "../../components/marcas/marcas";
+import Marcas from "../../components/maisVendidos/marcas/marcas";
 import Kit from "../../components/kit/kit";
 import { PrismicNextImage } from "@prismicio/next";
 import Vendidos from "../../components/maisVendidos/vendidos";
