@@ -159,6 +159,10 @@
     height: 24px;
 }
 
+.link {
+    text-decoration: none;
+}
+
 @media (max-width: 768px) {
     .cabecalho {
         height: 8rem;
