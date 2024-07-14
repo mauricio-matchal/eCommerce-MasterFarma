@@ -64,7 +64,7 @@ export default function Vendidos({ tituloSecao }: VendidosProps) {
 
             <div className={style.informacoes}>
             <div className={style.tituloP}>
-              <Link className={style.link} href="/produto/product-page">
+              <Link className={style.link} href="/produto">
                 <h2 className={style.tit}>{item.nome}</h2>
               </Link>
             </div>

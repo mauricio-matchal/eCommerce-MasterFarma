@@ -159,12 +159,12 @@ export function ProductManagePage() {
   }
 
   // essa função permite que o campo de preços apenas aceite numeros e nao letras
-  // event: React.KeyboardEvent<HTMLInputElement>) {
-  //   const charCode = event.which ? event.which : event.keyCode;
-  //   if (charCode !== 46 && (charCode < 48 || charCode > 57)) {
-  //     event.preventDefault();
-  //   }
-  // }
+  function handleKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode !== 46 && (charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+    }
+  }
 
   return (
     <div className={style.container}>
@@ -213,6 +213,7 @@ export function ProductManagePage() {
                       placeholder="R$0,00"
                       value={formData.preco_ant}
                       onChange={handleInputChange}
+                      onKeyPress={handleKeyPress}
                       className={style.textinput}
                       inputMode="numeric"
                       pattern="[0-9.]*"
@@ -228,6 +229,7 @@ export function ProductManagePage() {
                       placeholder="R$0,00"
                       value={formData.preco_atual}
                       onChange={handleInputChange}
+                      onKeyPress={handleKeyPress}
                       className={style.textinput}
                       inputMode="numeric"
                       pattern="[0-9.]*"
@@ -246,6 +248,7 @@ export function ProductManagePage() {
                         placeholder="00000000"
                         value={formData.codigo}
                         onChange={handleInputChange}
+                        onKeyPress={handleKeyPress}
                         className={style.textinput}
                         maxLength={8}
                         inputMode="numeric"

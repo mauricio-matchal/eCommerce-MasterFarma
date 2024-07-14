@@ -37,48 +37,48 @@ export function ProductInfoDisplay({
 
   return (
     <div className={style.container}>
-      <div>
+        <div className={style.previews} >
+          <Image
+            src={image}
+            alt={"Product Carmed"}
+            width={80}
+            height={80}
+            unoptimized={true}
+            className={style.imagesmall}
+          />
+          <Image
+            src={image}
+            alt={"Product Carmed"}
+            width={80}
+            height={80}
+            unoptimized={true}
+            className={style.imagesmall}
+          />
+          <Image
+            src={image}
+            alt={"Product Carmed"}
+            width={80}
+            height={80}
+            unoptimized={true}
+            className={style.imagesmall}
+          />
+          <Image
+            src={image}
+            alt={"Product Carmed"}
+            width={80}
+            height={80}
+            unoptimized={true}
+            className={style.imagesmall}
+          />
+        </div>
         <Image
           src={image}
           alt={"Product Carmed"}
-          width={80}
-          height={80}
+          width={500}
+          height={500}
           unoptimized={true}
-          className={style.imagesmall}
+          className={style.imagelarge}
         />
-        <Image
-          src={image}
-          alt={"Product Carmed"}
-          width={80}
-          height={80}
-          unoptimized={true}
-          className={style.imagesmall}
-        />
-        <Image
-          src={image}
-          alt={"Product Carmed"}
-          width={80}
-          height={80}
-          unoptimized={true}
-          className={style.imagesmall}
-        />
-        <Image
-          src={image}
-          alt={"Product Carmed"}
-          width={80}
-          height={80}
-          unoptimized={true}
-          className={style.imagesmall}
-        />
-      </div>
-      <Image
-        src={image}
-        alt={"Product Carmed"}
-        width={500}
-        height={500}
-        unoptimized={true}
-        className={style.imagelarge}
-      />
       <section>
         <h1 className={style.title}>{title}</h1>
         <div className={style.code}>

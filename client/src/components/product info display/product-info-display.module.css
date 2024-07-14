@@ -11,6 +11,16 @@
   gap: 0.5rem;
 }
 
+.keep {
+  display: flex;
+  flex-direction: row;
+}
+
+.previews {
+  display: flex;
+  flex-direction: column;
+}
+
 .imagesmall {
   border: 1px solid rgba(5, 57, 71, 0.2);
   border-radius: 15px;
